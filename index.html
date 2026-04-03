@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Celal Efe — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=JetBrains+Mono:wght@300;400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --black: #080808;
+    --surface: #111111;
+    --gold: #e8b84b;
+    --gold-dim: rgba(232,184,75,0.15);
+    --white: #f5f0e8;
+    --muted: #888880;
+    --border: rgba(232,184,75,0.2);
+  }
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+background: var(–black);
+color: var(–white);
+font-family: ‘JetBrains Mono’, monospace;
+overflow-x: hidden;
+cursor: none;
+}
+
+/* Custom cursor */
+.cursor {
+position: fixed;
+width: 10px; height: 10px;
+background: var(–gold);
+border-radius: 50%;
+pointer-events: none;
+z-index: 9999;
+transition: transform 0.15s ease;
+transform: translate(-50%, -50%);
+}
+.cursor-ring {
+position: fixed;
+width: 36px; height: 36px;
+border: 1px solid rgba(232,184,75,0.5);
+border-radius: 50%;
+pointer-events: none;
+z-index: 9998;
+transition: all 0.3s ease;
+transform: translate(-50%, -50%);
+}
+
+/* Grain overlay */
+body::before {
+content: ‘’;
+position: fixed;
+inset: 0;
+background-image: url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 200 200’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘noise’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.9’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23noise)’ opacity=‘0.03’/%3E%3C/svg%3E”);
+pointer-events: none;
+z-index: 9997;
+opacity: 0.4;
+}
+
+/* ─── INTRO SCREEN ─── */
+#intro {
+position: fixed;
+inset: 0;
+background: var(–black);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+z-index: 1000;
+transition: opacity 0.8s ease, transform 0.8s ease;
+}
+#intro.exit {
+opacity: 0;
+transform: translateY(-60px);
+pointer-events: none;
+}
+
+.intro-label {
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 0.65rem;
+letter-spacing: 0.3em;
+color: var(–gold);
+text-transform: uppercase;
+margin-bottom: 2.5rem;
+opacity: 0;
+animation: fadeUp 0.8s 0.3s forwards;
+}
+
+.photo-wrap {
+position: relative;
+width: 180px; height: 180px;
+cursor: none;
+}
+
+/* Heartbeat rings */
+.photo-wrap::before,
+.photo-wrap::after {
+content: ‘’;
+position: absolute;
+inset: -20px;
+border-radius: 50%;
+border: 1px solid rgba(232,184,75,0.3);
+animation: heartbeat 2s ease-in-out infinite;
+}
+.photo-wrap::after {
+inset: -40px;
+animation-delay: 0.4s;
+border-color: rgba(232,184,75,0.15);
+}
+
+@keyframes heartbeat {
+0%, 100% { transform: scale(1); opacity: 1; }
+14% { transform: scale(1.08); opacity: 0.8; }
+28% { transform: scale(1); opacity: 1; }
+42% { transform: scale(1.04); opacity: 0.9; }
+}
+
+.photo-circle {
+width: 180px; height: 180px;
+border-radius: 50%;
+border: 2px solid var(–gold);
+overflow: hidden;
+background: var(–surface);
+display: flex;
+align-items: center;
+justify-content: center;
+animation: fadeScale 1s 0.1s both, pulse 2s ease-in-out infinite;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+position: relative;
+z-index: 2;
+}
+.photo-circle:hover {
+transform: scale(1.06);
+box-shadow: 0 0 40px rgba(232,184,75,0.3);
+}
+.photo-circle img {
+width: 100%; height: 100%;
+object-fit: cover;
+}
+.photo-placeholder {
+font-size: 4rem;
+color: var(–gold);
+opacity: 0.5;
+user-select: none;
+}
+
+@keyframes pulse {
+0%, 100% { box-shadow: 0 0 20px rgba(232,184,75,0.2); }
+50% { box-shadow: 0 0 40px rgba(232,184,75,0.4); }
+}
+
+.intro-name {
+font-family: ‘Playfair Display’, serif;
+font-size: 2.4rem;
+font-weight: 900;
+letter-spacing: 0.05em;
+margin-top: 2rem;
+opacity: 0;
+animation: fadeUp 0.8s 0.5s forwards;
+}
+
+.intro-tap {
+font-size: 0.6rem;
+letter-spacing: 0.25em;
+color: var(–muted);
+margin-top: 1rem;
+text-transform: uppercase;
+opacity: 0;
+animation: fadeUp 0.8s 0.9s forwards, blink 1.8s 1.5s infinite;
+}
+
+@keyframes blink {
+0%, 100% { opacity: 0.6; }
+50% { opacity: 0.2; }
+}
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(16px); }
+to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeScale {
+from { opacity: 0; transform: scale(0.85); }
+to { opacity: 1; transform: scale(1); }
+}
+
+/* ─── MAIN SITE ─── */
+#main {
+opacity: 0;
+transform: translateY(30px);
+transition: opacity 0.9s ease, transform 0.9s ease;
+}
+#main.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+/* NAV */
+nav {
+position: fixed;
+top: 0; left: 0; right: 0;
+z-index: 500;
+padding: 1.5rem 4rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
+border-bottom: 1px solid transparent;
+transition: background 0.3s, border-color 0.3s;
+}
+nav.scrolled {
+background: rgba(8,8,8,0.95);
+backdrop-filter: blur(12px);
+border-color: var(–border);
+}
+.nav-logo {
+font-family: ‘Playfair Display’, serif;
+font-size: 1.2rem;
+font-style: italic;
+color: var(–gold);
+}
+.nav-links {
+display: flex;
+gap: 2.5rem;
+list-style: none;
+}
+.nav-links a {
+font-size: 0.65rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–muted);
+text-decoration: none;
+transition: color 0.2s;
+}
+.nav-links a:hover { color: var(–gold); }
+
+/* HERO */
+#hero {
+min-height: 100vh;
+display: grid;
+grid-template-columns: 1fr 1fr;
+align-items: center;
+padding: 0 8rem;
+gap: 4rem;
+position: relative;
+overflow: hidden;
+}
+
+.hero-bg-text {
+position: absolute;
+right: -2rem;
+top: 50%;
+transform: translateY(-50%);
+font-family: ‘Playfair Display’, serif;
+font-size: 22vw;
+font-weight: 900;
+color: rgba(232,184,75,0.03);
+pointer-events: none;
+white-space: nowrap;
+user-select: none;
+}
+
+.hero-left { position: relative; z-index: 2; }
+
+.hero-eyebrow {
+display: inline-flex;
+align-items: center;
+gap: 0.8rem;
+font-size: 0.65rem;
+letter-spacing: 0.3em;
+color: var(–gold);
+text-transform: uppercase;
+margin-bottom: 1.5rem;
+}
+.hero-eyebrow::before {
+content: ‘’;
+width: 2rem; height: 1px;
+background: var(–gold);
+}
+
+.hero-title {
+font-family: ‘Playfair Display’, serif;
+font-size: clamp(3rem, 5vw, 5rem);
+font-weight: 900;
+line-height: 1.05;
+margin-bottom: 0.3rem;
+}
+.hero-title em {
+font-style: italic;
+color: var(–gold);
+}
+
+.hero-subtitle {
+font-size: 0.7rem;
+letter-spacing: 0.2em;
+color: var(–muted);
+text-transform: uppercase;
+margin: 1.5rem 0 2rem;
+}
+
+.hero-summary {
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 0.8rem;
+line-height: 1.9;
+color: rgba(245,240,232,0.7);
+max-width: 480px;
+margin-bottom: 2.5rem;
+}
+
+.hero-cta-group {
+display: flex;
+gap: 1rem;
+flex-wrap: wrap;
+}
+
+.btn-primary {
+padding: 0.8rem 2rem;
+background: var(–gold);
+color: var(–black);
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 0.65rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+text-decoration: none;
+border: none;
+cursor: none;
+transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-primary:hover {
+transform: translateY(-2px);
+box-shadow: 0 8px 24px rgba(232,184,75,0.3);
+}
+.btn-ghost {
+padding: 0.8rem 2rem;
+background: transparent;
+color: var(–white);
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 0.65rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+text-decoration: none;
+border: 1px solid var(–border);
+cursor: none;
+transition: border-color 0.2s, color 0.2s;
+}
+.btn-ghost:hover { border-color: var(–gold); color: var(–gold); }
+
+.hero-right {
+position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 2;
+}
+.hero-photo-frame {
+width: 340px; height: 420px;
+border: 1px solid var(–border);
+overflow: hidden;
+position: relative;
+background: var(–surface);
+}
+.hero-photo-frame::before {
+content: ‘’;
+position: absolute;
+top: -1px; left: 2rem;
+width: 3rem; height: 2px;
+background: var(–gold);
+}
+.hero-photo-frame img {
+width: 100%; height: 100%;
+object-fit: cover;
+opacity: 0.85;
+}
+.hero-photo-placeholder {
+width: 100%; height: 100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 1rem;
+color: var(–muted);
+font-size: 0.7rem;
+letter-spacing: 0.1em;
+}
+.hero-photo-placeholder span { font-size: 4rem; }
+.hero-tags {
+position: absolute;
+bottom: -1rem; right: -2rem;
+display: flex;
+flex-direction: column;
+gap: 0.5rem;
+}
+.hero-tag {
+background: var(–black);
+border: 1px solid var(–border);
+padding: 0.4rem 1rem;
+font-size: 0.6rem;
+letter-spacing: 0.15em;
+color: var(–gold);
+text-transform: uppercase;
+}
+
+/* SECTIONS */
+section { padding: 7rem 8rem; }
+
+.section-header {
+display: flex;
+align-items: center;
+gap: 1.5rem;
+margin-bottom: 4rem;
+}
+.section-num {
+font-size: 0.6rem;
+letter-spacing: 0.2em;
+color: var(–gold);
+}
+.section-line {
+width: 3rem; height: 1px;
+background: var(–border);
+}
+.section-title {
+font-family: ‘Playfair Display’, serif;
+font-size: 2.8rem;
+font-weight: 900;
+}
+.section-title em { color: var(–gold); font-style: italic; }
+
+/* ABOUT */
+#about {
+background: var(–surface);
+position: relative;
+overflow: hidden;
+}
+#about::after {
+content: ‘ABOUT’;
+position: absolute;
+right: 2rem; top: 50%;
+transform: translateY(-50%);
+font-family: ‘Playfair Display’, serif;
+font-size: 12rem;
+font-weight: 900;
+color: rgba(232,184,75,0.025);
+pointer-events: none;
+}
+
+.about-grid {
+display: grid;
+grid-template-columns: 1.2fr 1fr;
+gap: 5rem;
+align-items: start;
+}
+.about-text {
+font-size: 0.85rem;
+line-height: 2;
+color: rgba(245,240,232,0.75);
+}
+.about-text p + p { margin-top: 1.2rem; }
+.about-details { display: flex; flex-direction: column; gap: 1rem; }
+.detail-row {
+display: flex;
+align-items: center;
+gap: 1.2rem;
+padding: 1rem 1.2rem;
+border: 1px solid var(–border);
+border-left: 2px solid var(–gold);
+transition: background 0.2s;
+}
+.detail-row:hover { background: var(–gold-dim); }
+.detail-label {
+font-size: 0.55rem;
+letter-spacing: 0.2em;
+color: var(–gold);
+text-transform: uppercase;
+min-width: 70px;
+}
+.detail-val {
+font-size: 0.75rem;
+color: var(–white);
+}
+.detail-val a {
+color: var(–white);
+text-decoration: none;
+border-bottom: 1px solid var(–border);
+transition: border-color 0.2s, color 0.2s;
+}
+.detail-val a:hover { color: var(–gold); border-color: var(–gold); }
+
+/* EXPERIENCE */
+#experience { background: var(–black); }
+.exp-grid { display: flex; flex-direction: column; gap: 0; }
+.exp-item {
+display: grid;
+grid-template-columns: 180px 1fr;
+gap: 2rem;
+padding: 2.5rem 0;
+border-bottom: 1px solid var(–border);
+transition: background 0.2s;
+position: relative;
+}
+.exp-item:first-child { border-top: 1px solid var(–border); }
+.exp-item::before {
+content: ‘’;
+position: absolute;
+left: 0; top: 0; bottom: 0;
+width: 0;
+background: var(–gold-dim);
+transition: width 0.3s ease;
+}
+.exp-item:hover::before { width: 100%; }
+.exp-date {
+font-size: 0.6rem;
+letter-spacing: 0.15em;
+color: var(–gold);
+padding-top: 0.3rem;
+position: relative;
+z-index: 1;
+}
+.exp-content { position: relative; z-index: 1; }
+.exp-role {
+font-family: ‘Syne’, sans-serif;
+font-size: 1.1rem;
+font-weight: 700;
+margin-bottom: 0.3rem;
+}
+.exp-company {
+font-size: 0.65rem;
+letter-spacing: 0.15em;
+color: var(–muted);
+text-transform: uppercase;
+margin-bottom: 0.8rem;
+}
+.exp-bullets {
+list-style: none;
+display: flex;
+flex-direction: column;
+gap: 0.4rem;
+}
+.exp-bullets li {
+font-size: 0.75rem;
+line-height: 1.7;
+color: rgba(245,240,232,0.65);
+padding-left: 1rem;
+position: relative;
+}
+.exp-bullets li::before {
+content: ‘→’;
+position: absolute;
+left: 0;
+color: var(–gold);
+font-size: 0.65rem;
+}
+
+/* PROJECTS */
+#projects { background: var(–surface); }
+.projects-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 1.5rem;
+}
+.project-card {
+border: 1px solid var(–border);
+padding: 2rem;
+background: var(–black);
+transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+position: relative;
+overflow: hidden;
+}
+.project-card::before {
+content: ‘’;
+position: absolute;
+inset: 0;
+background: linear-gradient(135deg, var(–gold-dim), transparent);
+opacity: 0;
+transition: opacity 0.3s;
+}
+.project-card:hover {
+transform: translateY(-6px);
+border-color: var(–gold);
+box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+}
+.project-card:hover::before { opacity: 1; }
+.project-year {
+font-size: 0.55rem;
+letter-spacing: 0.2em;
+color: var(–gold);
+margin-bottom: 0.8rem;
+}
+.project-name {
+font-family: ‘Syne’, sans-serif;
+font-size: 1rem;
+font-weight: 700;
+margin-bottom: 0.5rem;
+position: relative;
+}
+.project-stack {
+font-size: 0.6rem;
+color: var(–muted);
+margin-bottom: 1rem;
+letter-spacing: 0.1em;
+}
+.project-desc {
+font-size: 0.72rem;
+line-height: 1.8;
+color: rgba(245,240,232,0.6);
+position: relative;
+}
+
+/* SKILLS */
+#skills { background: var(–black); }
+.skills-groups {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 3rem;
+}
+.skill-group-title {
+font-size: 0.6rem;
+letter-spacing: 0.25em;
+color: var(–gold);
+text-transform: uppercase;
+margin-bottom: 1.2rem;
+padding-bottom: 0.8rem;
+border-bottom: 1px solid var(–border);
+}
+.skill-tags {
+display: flex;
+flex-wrap: wrap;
+gap: 0.6rem;
+}
+.skill-tag {
+padding: 0.45rem 0.9rem;
+border: 1px solid var(–border);
+font-size: 0.65rem;
+letter-spacing: 0.1em;
+color: rgba(245,240,232,0.8);
+transition: all 0.2s;
+}
+.skill-tag:hover {
+background: var(–gold-dim);
+border-color: var(–gold);
+color: var(–gold);
+transform: translateY(-2px);
+}
+
+/* CONTACT */
+#contact {
+background: var(–surface);
+text-align: center;
+}
+.contact-inner {
+max-width: 600px;
+margin: 0 auto;
+}
+.contact-title {
+font-family: ‘Playfair Display’, serif;
+font-size: clamp(2.5rem, 4vw, 4.5rem);
+font-weight: 900;
+line-height: 1.1;
+margin-bottom: 1.5rem;
+}
+.contact-title em { color: var(–gold); font-style: italic; }
+.contact-text {
+font-size: 0.78rem;
+line-height: 1.9;
+color: rgba(245,240,232,0.6);
+margin-bottom: 2.5rem;
+}
+.contact-links {
+display: flex;
+justify-content: center;
+gap: 1.5rem;
+flex-wrap: wrap;
+}
+.contact-link {
+display: flex;
+align-items: center;
+gap: 0.6rem;
+font-size: 0.65rem;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(–muted);
+text-decoration: none;
+border-bottom: 1px solid transparent;
+padding-bottom: 2px;
+transition: color 0.2s, border-color 0.2s;
+}
+.contact-link:hover { color: var(–gold); border-color: var(–gold); }
+
+/* FOOTER */
+footer {
+padding: 2rem 8rem;
+border-top: 1px solid var(–border);
+display: flex;
+justify-content: space-between;
+align-items: center;
+font-size: 0.6rem;
+letter-spacing: 0.1em;
+color: var(–muted);
+}
+
+/* SCROLL REVEAL */
+.reveal {
+opacity: 0;
+transform: translateY(30px);
+transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+@media (max-width: 900px) {
+#hero { grid-template-columns: 1fr; padding: 6rem 2rem 3rem; text-align: center; }
+.hero-right { display: none; }
+section { padding: 4rem 2rem; }
+nav { padding: 1.2rem 2rem; }
+.nav-links { display: none; }
+.about-grid { grid-template-columns: 1fr; }
+.exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+.projects-grid { grid-template-columns: 1fr; }
+.skills-groups { grid-template-columns: 1fr; }
+footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 2rem; }
+.hero-cta-group { justify-content: center; }
+.hero-summary { margin: 0 auto 2.5rem; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- Custom cursor -->
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ─── INTRO SCREEN ─── -->
+
+<div id="intro">
+  <p class="intro-label">Welcome to my world</p>
+  <div class="photo-wrap" id="photoBtn" title="Click to enter">
+    <div class="photo-circle">
+      <!-- Replace src with your actual photo -->
+      <!-- <img src="photo.jpg" alt="Celal Efe" /> -->
+      <span class="photo-placeholder">👤</span>
+    </div>
+  </div>
+  <h1 class="intro-name">Celal Efe</h1>
+  <p class="intro-tap">Tap to enter</p>
+</div>
+
+<!-- ─── MAIN SITE ─── -->
+
+<div id="main">
+
+  <nav id="navbar">
+    <div class="nav-logo">C.Efe</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+
+  <section id="hero">
+    <div class="hero-bg-text">EFE</div>
+    <div class="hero-left">
+      <div class="hero-eyebrow">Available for opportunities</div>
+      <h1 class="hero-title">
+        Celal<br><em>Efe</em>
+      </h1>
+      <p class="hero-subtitle">Software Engineer · Web Developer · Cameraman · DJ</p>
+      <p class="hero-summary">
+        I build user-friendly apps and dig into how systems work behind the scenes. Whether I'm designing a front-end interface, testing web apps for vulnerabilities, or holding a camera at an event — I adapt quickly and bring good energy to every project.
+      </p>
+      <div class="hero-cta-group">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="#contact" class="btn-ghost">Get In Touch</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-photo-frame">
+        <!-- <img src="photo.jpg" alt="Celal Efe" /> -->
+        <div class="hero-photo-placeholder">
+          <span>📷</span>
+          <p>Add your photo</p>
+        </div>
+      </div>
+      <div class="hero-tags">
+        <div class="hero-tag">Famagusta, CY</div>
+        <div class="hero-tag">EMU · 2026</div>
+        <div class="hero-tag">Open to work</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+
+  <section id="about">
+    <div class="section-header reveal">
+      <span class="section-num">01</span>
+      <div class="section-line"></div>
+      <h2 class="section-title">About <em>Me</em></h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I'm a Software Engineering student at Eastern Mediterranean University who loves building things that actually work — and look great doing it. My focus is front-end development and database security, but I rarely stop at just one skill set.</p>
+        <p>Outside of code, I work as a cameraman and video editor at Urban Cypriot, and I've performed as a Resident DJ at 12 different venues across Ayia Napa. I believe the same energy and adaptability that works on a dancefloor works in a development team.</p>
+        <p>I'm cheerful, ethical, and highly curious. I learn fast and I work hard to contribute wherever I land.</p>
+      </div>
+      <div class="about-details reveal">
+        <div class="detail-row">
+          <span class="detail-label">Location</span>
+          <span class="detail-val">Famagusta, Cyprus</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">University</span>
+          <span class="detail-val">Eastern Mediterranean University</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Degree</span>
+          <span class="detail-val">BSc Software Engineering · 2026</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Email</span>
+          <span class="detail-val"><a href="mailto:celal.efe@cmail.com">celal.efe@cmail.com</a></span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">LinkedIn</span>
+          <span class="detail-val"><a href="https://linkedin.com/in/celal-efe" target="_blank">linkedin.com/in/celal-efe</a></span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">GitHub</span>
+          <span class="detail-val"><a href="https://github.com/c0cky" target="_blank">github.com/c0cky</a></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+
+  <section id="experience">
+    <div class="section-header reveal">
+      <span class="section-num">02</span>
+      <div class="section-line"></div>
+      <h2 class="section-title">Experi<em>ence</em></h2>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-item reveal">
+        <div class="exp-date">Jan 2023 — Present</div>
+        <div class="exp-content">
+          <div class="exp-role">Freelance Web Developer</div>
+          <div class="exp-company">Self-Employed · Various Clients</div>
+          <ul class="exp-bullets">
+            <li>Designed and built responsive, modern websites for local car dealerships.</li>
+            <li>Focused on clean UI/UX using HTML, CSS, JavaScript, and React to help businesses showcase their cars easily.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-date">Jan 2022 — Present</div>
+        <div class="exp-content">
+          <div class="exp-role">Full-Stack Developer & Cameraman</div>
+          <div class="exp-company">Urban Cypriot · Famagusta</div>
+          <ul class="exp-bullets">
+            <li>Built a full-stack reservation system (Astroturf / Halı Saha Booking App) from scratch, allowing users to easily book local football pitches online.</li>
+            <li>Handled camera work and video editing for events. Worked closely with the team to shoot fun, engaging content.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-date">Jan 2021 — Present</div>
+        <div class="exp-content">
+          <div class="exp-role">Resident DJ</div>
+          <div class="exp-company">Various Venues · Ayia Napa (12 Locations)</div>
+          <ul class="exp-bullets">
+            <li>Played at 12 different venues, managing the energy of the crowd and solving technical audio issues on the spot.</li>
+            <li>Developed strong skills in staying calm, ethical, and keeping a positive vibe under high-pressure environments.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+
+  <section id="projects">
+    <div class="section-header reveal">
+      <span class="section-num">03</span>
+      <div class="section-line"></div>
+      <h2 class="section-title">Pro<em>jects</em></h2>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-year">2023</div>
+        <div class="project-name">EMU Library Booking App</div>
+        <div class="project-stack">React Native · Node.js · Firebase</div>
+        <div class="project-desc">A cross-platform mobile and web app to help university students book their study spots easily. Built from the ground up.</div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-year">2025</div>
+        <div class="project-name">Real-Time Drone Simulator</div>
+        <div class="project-stack">Unity · C#</div>
+        <div class="project-desc">Developed a real-time drone simulation with realistic physics for a university project. Focused on accurate flight dynamics.</div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-year">2026 · In Progress</div>
+        <div class="project-name">Untitled 2D RPG Game</div>
+        <div class="project-stack">Unity · C#</div>
+        <div class="project-desc">Currently building a 2D RPG game — handling everything from core mechanics to inventory systems and game logic design.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+
+  <section id="skills">
+    <div class="section-header reveal">
+      <span class="section-num">04</span>
+      <div class="section-line"></div>
+      <h2 class="section-title">Tech <em>Skills</em></h2>
+    </div>
+    <div class="skills-groups">
+      <div class="reveal">
+        <div class="skill-group-title">Languages & Web</div>
+        <div class="skill-tags">
+          <span class="skill-tag">HTML5</span>
+          <span class="skill-tag">CSS3</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">TypeScript</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">C#</span>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="skill-group-title">Frameworks</div>
+        <div class="skill-tags">
+          <span class="skill-tag">React.js</span>
+          <span class="skill-tag">React Native</span>
+          <span class="skill-tag">Node.js</span>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="skill-group-title">System & Security</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Ubuntu</span>
+          <span class="skill-tag">Kali Linux</span>
+          <span class="skill-tag">Penetration Testing</span>
+          <span class="skill-tag">Vulnerability Fixing</span>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="skill-group-title">Tools</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">Unity 3D</span>
+          <span class="skill-tag">Firebase</span>
+          <span class="skill-tag">Premiere Pro</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+
+  <section id="contact">
+    <div class="contact-inner">
+      <h2 class="contact-title reveal">Let's build something <em>great.</em></h2>
+      <p class="contact-text reveal">Whether it's a web project, a collaboration, or just a conversation — I'm always open to new ideas and opportunities.</p>
+      <div class="contact-links reveal">
+        <a href="mailto:celal.efe@cmail.com" class="contact-link">✉ celal.efe@cmail.com</a>
+        <a href="https://linkedin.com/in/celal-efe" target="_blank" class="contact-link">in linkedin</a>
+        <a href="https://github.com/c0cky" target="_blank" class="contact-link">⌥ github/c0cky</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Celal Efe</span>
+    <span>Designed & built with ♥ in Famagusta</span>
+  </footer>
+
+</div><!-- /#main -->
+
+<script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animCursor() {
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animCursor);
+  }
+  animCursor();
+
+  // Touch support for iPad
+  document.addEventListener('touchstart', e => {
+    const t = e.touches[0];
+    cursor.style.left = t.clientX + 'px'; cursor.style.top = t.clientY + 'px';
+  });
+
+  // Intro → Main transition
+  const intro = document.getElementById('intro');
+  const main = document.getElementById('main');
+  const photoBtn = document.getElementById('photoBtn');
+
+  function enterSite() {
+    intro.classList.add('exit');
+    setTimeout(() => {
+      intro.style.display = 'none';
+      main.classList.add('visible');
+    }, 800);
+  }
+
+  photoBtn.addEventListener('click', enterSite);
+  photoBtn.addEventListener('touchend', e => { e.preventDefault(); enterSite(); });
+
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+
+</body>
+</html>
