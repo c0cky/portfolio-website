@@ -22,12 +22,11 @@ body{background:#080808;color:#f5f0e8;font-family:'JetBrains Mono',monospace;ove
 .r2{inset:-36px;animation-delay:0.25s;border-color:rgba(232,184,75,0.15)}
 .r3{inset:-54px;animation-delay:0.5s;border-color:rgba(232,184,75,0.07)}
 @keyframes hb{0%,100%{transform:scale(1);opacity:1}14%{transform:scale(1.1);opacity:0.7}28%{transform:scale(1);opacity:1}42%{transform:scale(1.05);opacity:0.85}}
-.glow{position:absolute;inset:-30px;border-radius:50%;background:radial-gradient(circle,rgba(232,184,75,0.12) 0%,transparent 70%);z-index:1;animation:glowp 3s ease-in-out infinite}
-@keyframes glowp{0%,100%{opacity:0.5;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
-.photo-circle{width:200px;height:200px;border-radius:50%;border:2px solid #e8b84b;overflow:hidden;background:#1a1a1a;display:flex;align-items:center;justify-content:center;position:relative;z-index:2;transition:transform 0.3s,box-shadow 0.3s;animation:scIn 0.9s 0.1s both;box-shadow:0 0 30px rgba(232,184,75,0.15)}
-.photo-circle:hover{transform:scale(1.05);box-shadow:0 0 50px rgba(232,184,75,0.35)}
-.photo-circle img{width:100%;height:100%;object-fit:cover}
-.photo-circle .ph{font-size:5rem;opacity:0.2}
+.glow{position:absolute;inset:-30px;border-radius:50%;background:radial-gradient(circle,rgba(232,184,75,0.15) 0%,transparent 70%);z-index:1;animation:glowp 3s ease-in-out infinite}
+@keyframes glowp{0%,100%{opacity:0.6;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
+.photo-circle{width:200px;height:200px;border-radius:50%;border:2.5px solid #e8b84b;overflow:hidden;background:#111;display:flex;align-items:center;justify-content:center;position:relative;z-index:2;transition:transform 0.4s,box-shadow 0.4s;animation:scIn 0.9s 0.1s both;box-shadow:0 0 40px rgba(232,184,75,0.2)}
+.photo-circle:hover{transform:scale(1.06);box-shadow:0 0 60px rgba(232,184,75,0.4)}
+.photo-circle img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:brightness(1.05) contrast(1.05)}
 @keyframes scIn{from{opacity:0;transform:scale(0.82)}to{opacity:1;transform:scale(1)}}
 .intro-name{font-family:‘Playfair Display’,serif;font-size:2.6rem;font-weight:900;letter-spacing:0.05em;animation:fadeUp 0.8s 0.55s both}
 .intro-role{font-size:0.58rem;letter-spacing:0.2em;color:#555;text-transform:uppercase;margin-top:0.5rem;animation:fadeUp 0.8s 0.75s both}
@@ -49,10 +48,10 @@ nav.scrolled{background:rgba(8,8,8,0.93);backdrop-filter:blur(12px);border-botto
 
 /* HERO */
 #hero{min-height:100vh;background:#080808;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:0 8rem;gap:4rem;position:relative;overflow:hidden}
-.blob{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
-.b1{width:400px;height:400px;background:rgba(232,184,75,0.05);top:10%;right:10%}
-.b2{width:280px;height:280px;background:rgba(232,184,75,0.03);bottom:10%;left:5%}
-.hero-bg{position:absolute;right:-1rem;top:50%;transform:translateY(-50%);font-family:‘Playfair Display’,serif;font-size:20vw;font-weight:900;color:rgba(232,184,75,0.025);pointer-events:none;user-select:none}
+.blob{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0}
+.b1{width:500px;height:500px;background:rgba(232,184,75,0.06);top:0%;right:5%}
+.b2{width:300px;height:300px;background:rgba(232,184,75,0.04);bottom:5%;left:5%}
+.hero-bg{position:absolute;right:-1rem;top:50%;transform:translateY(-50%);font-family:‘Playfair Display’,serif;font-size:20vw;font-weight:900;color:rgba(232,184,75,0.025);pointer-events:none;user-select:none;z-index:0}
 .hl{position:relative;z-index:2}
 .eyebrow{display:inline-flex;align-items:center;gap:0.8rem;font-size:0.58rem;letter-spacing:0.3em;color:#e8b84b;text-transform:uppercase;margin-bottom:1.5rem}
 .eyebrow::before{content:’’;width:2rem;height:1px;background:#e8b84b}
@@ -62,18 +61,29 @@ nav.scrolled{background:rgba(8,8,8,0.93);backdrop-filter:blur(12px);border-botto
 .hero-text{font-size:0.78rem;line-height:2;color:rgba(245,240,232,0.6);max-width:450px;margin-bottom:2.5rem}
 .ctas{display:flex;gap:1rem;flex-wrap:wrap}
 .btn-p{padding:0.9rem 2rem;background:#e8b84b;color:#080808;font-family:‘JetBrains Mono’,monospace;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s}
-.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,184,75,0.3)}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,184,75,0.35)}
 .btn-g{padding:0.9rem 2rem;background:transparent;color:#f5f0e8;font-family:‘JetBrains Mono’,monospace;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;text-decoration:none;border:1px solid rgba(232,184,75,0.25);cursor:pointer;transition:border-color 0.2s,color 0.2s}
 .btn-g:hover{border-color:#e8b84b;color:#e8b84b}
+
+/* HERO PHOTO */
 .hr{position:relative;display:flex;justify-content:center;align-items:center;z-index:2}
-.hfw{position:relative;width:320px;height:390px}
-.hf{width:100%;height:100%;border:1px solid rgba(232,184,75,0.15);overflow:hidden;background:#111;position:relative}
-.hf::before{content:’’;position:absolute;top:0;left:1.5rem;width:2.5rem;height:2px;background:#e8b84b;z-index:1}
-.hf img{width:100%;height:100%;object-fit:cover;opacity:0.9}
-.hfph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.8rem;color:#333;font-size:0.62rem;letter-spacing:0.1em}
-.hfph span{font-size:3.5rem;opacity:0.3}
-.htags{position:absolute;bottom:-1.5rem;right:-1.5rem;display:flex;flex-direction:column;gap:0.5rem}
-.htag{background:#080808;border:1px solid rgba(232,184,75,0.15);padding:0.4rem 1rem;font-size:0.52rem;letter-spacing:0.15em;color:#e8b84b;text-transform:uppercase}
+.hfw{position:relative;width:320px;height:420px}
+.hf{width:100%;height:100%;overflow:hidden;background:#111;position:relative}
+/* Cinematic corner borders */
+.hf::before,.hf::after{content:’’;position:absolute;z-index:3;pointer-events:none}
+.hf::before{top:0;left:0;width:40px;height:40px;border-top:2px solid #e8b84b;border-left:2px solid #e8b84b}
+.hf::after{bottom:0;right:0;width:40px;height:40px;border-bottom:2px solid #e8b84b;border-right:2px solid #e8b84b}
+.hf-inner{position:relative;width:100%;height:100%;overflow:hidden}
+.hf-inner::before{content:’’;position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,8,0.6) 0%,transparent 50%);z-index:2;pointer-events:none}
+.hf-inner::after{content:’’;position:absolute;inset:0;background:linear-gradient(135deg,rgba(232,184,75,0.08) 0%,transparent 60%);z-index:2;pointer-events:none}
+.hf img{width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:brightness(0.95) contrast(1.1) saturate(0.9);transition:transform 0.6s ease}
+.hf:hover img{transform:scale(1.03)}
+
+/* scan line effect */
+.scanline{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px);z-index:3;pointer-events:none;opacity:0.5}
+
+.htags{position:absolute;bottom:-1rem;right:-2rem;display:flex;flex-direction:column;gap:0.5rem}
+.htag{background:#080808;border:1px solid rgba(232,184,75,0.2);padding:0.4rem 1rem;font-size:0.52rem;letter-spacing:0.15em;color:#e8b84b;text-transform:uppercase}
 
 /* SECTIONS */
 section{padding:6rem 8rem}
@@ -159,8 +169,6 @@ footer{padding:2rem 8rem;border-top:1px solid rgba(232,184,75,0.07);display:flex
 .cbx{background:none;border:none;font-size:1.1rem;cursor:pointer;color:#080808;opacity:0.6;transition:opacity 0.2s}
 .cbx:hover{opacity:1}
 .cbb{padding:1.5rem}
-
-/* Chat Step 1 */
 .cq{font-size:0.7rem;line-height:1.7;color:rgba(245,240,232,0.65);margin-bottom:1.2rem}
 .cats{display:flex;flex-direction:column;gap:0.7rem}
 .cat{padding:0.9rem 1.2rem;border:1px solid rgba(232,184,75,0.15);background:transparent;color:#f5f0e8;font-family:‘JetBrains Mono’,monospace;font-size:0.65rem;cursor:pointer;text-align:left;display:flex;align-items:center;gap:0.9rem;transition:background 0.2s,border-color 0.2s}
@@ -169,8 +177,6 @@ footer{padding:2rem 8rem;border-top:1px solid rgba(232,184,75,0.07);display:flex
 .ctx{display:flex;flex-direction:column;gap:0.1rem}
 .clb{font-size:0.7rem;font-weight:600}
 .cdb{font-size:0.52rem;color:#555;letter-spacing:0.05em}
-
-/* Chat Step 2 */
 #cs2{display:none}
 .cbk{background:none;border:none;color:#e8b84b;font-size:0.58rem;letter-spacing:0.1em;cursor:pointer;margin-bottom:1.2rem;display:flex;align-items:center;gap:0.4rem;font-family:‘JetBrains Mono’,monospace}
 .csl{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:#e8b84b;margin-bottom:1.2rem;padding:0.5rem 0.9rem;border-left:2px solid #e8b84b;background:rgba(232,184,75,0.05)}
@@ -183,8 +189,6 @@ footer{padding:2rem 8rem;border-top:1px solid rgba(232,184,75,0.07);display:flex
 .csb{width:100%;padding:0.85rem;background:#e8b84b;color:#080808;font-family:‘JetBrains Mono’,monospace;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;border:none;cursor:pointer;transition:opacity 0.2s}
 .csb:hover{opacity:0.88}
 .csb:disabled{opacity:0.5;cursor:not-allowed}
-
-/* Chat Step 3 */
 #cs3{display:none;text-align:center;padding:2rem 0}
 .csi{font-size:2.8rem;margin-bottom:1rem}
 .cstt{font-family:‘Playfair Display’,serif;font-size:1.2rem;color:#e8b84b;margin-bottom:0.6rem}
@@ -212,7 +216,7 @@ footer{padding:2rem 8rem;border-top:1px solid rgba(232,184,75,0.07);display:flex
 .fb{padding:0.4rem 1rem;border:1px solid rgba(232,184,75,0.12);background:transparent;color:#666;font-family:‘JetBrains Mono’,monospace;font-size:0.56rem;letter-spacing:0.1em;cursor:pointer;transition:all 0.2s}
 .fb.active,.fb:hover{border-color:#e8b84b;color:#e8b84b;background:rgba(232,184,75,0.05)}
 #adm-msgs{padding:0 2rem 2rem}
-.mc{border:1px solid rgba(232,184,75,0.07);padding:1.5rem;margin-top:1rem;background:#111;transition:border-color 0.2s}
+.mc{border:1px solid rgba(232,184,75,0.07);padding:1.5rem;margin-top:1rem;background:#111}
 .mc:hover{border-color:rgba(232,184,75,0.18)}
 .mm{display:flex;justify-content:space-between;margin-bottom:0.8rem;align-items:center}
 .mtype{font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;padding:0.22rem 0.7rem;border:1px solid}
@@ -225,7 +229,6 @@ footer{padding:2rem 8rem;border-top:1px solid rgba(232,184,75,0.07);display:flex
 .mmsg{font-size:0.68rem;line-height:1.7;color:rgba(245,240,232,0.55);border-top:1px solid rgba(232,184,75,0.07);padding-top:0.8rem}
 .aempty{text-align:center;padding:3rem;color:#333;font-size:0.68rem;letter-spacing:0.1em}
 
-/* MOBILE */
 @media(max-width:900px){
 #hero{grid-template-columns:1fr;padding:5rem 1.5rem 3rem}
 .hr{display:none}
@@ -255,9 +258,7 @@ footer{flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center}
     <div class="ring r2"></div>
     <div class="ring r3"></div>
     <div class="photo-circle">
-      <!-- FOTOĞRAF EKLEMEK İÇİN: aşağıdaki satırın yorumunu kaldır, ph span'ını sil -->
-      <!-- <img src="photo.jpg" alt="Celal Efe"> -->
-      <span class="ph">👤</span>
+      <img src="photo1.jpg" alt="Celal Efe">
     </div>
   </div>
   <h1 class="intro-name">Celal Efe</h1>
@@ -296,8 +297,10 @@ footer{flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center}
     <div class="hr">
       <div class="hfw">
         <div class="hf">
-          <!-- <img src="photo.jpg" alt="Celal Efe"> -->
-          <div class="hfph"><span>📷</span><p>Add your photo</p></div>
+          <div class="hf-inner">
+            <img src="photo2.jpg" alt="Celal Efe DJ Set">
+            <div class="scanline"></div>
+          </div>
         </div>
         <div class="htags">
           <div class="htag">Famagusta, CY</div>
@@ -379,11 +382,9 @@ footer{flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center}
   <footer><span>© 2026 Celal Efe</span><span>Designed &amp; built with ♥ in Famagusta</span></footer>
 </div>
 
-<!-- CHATBOT BUTTON -->
+<!-- CHATBOT -->
 
 <button id="cb-btn" onclick="toggleChat()">💬<span class="cbdot"></span></button>
-
-<!-- CHATBOT POPUP -->
 
 <div id="cb-pop">
   <div class="cbh">
@@ -392,7 +393,7 @@ footer{flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center}
   </div>
   <div class="cbb">
     <div id="cs1">
-      <p class="cq">Merhaba! 👋 Size nasıl yardımcı olabilirim? Bir kategori seçin:</p>
+      <p class="cq">Merhaba! 👋 Size nasıl yardımcı olabilirim?</p>
       <div class="cats">
         <button class="cat" onclick="selCat('Sikayet')"><span class="cico">⚠️</span><span class="ctx"><span class="clb">Şikayet</span><span class="cdb">Bir sorun bildirmek istiyorum</span></span></button>
         <button class="cat" onclick="selCat('Oneri')"><span class="cico">💡</span><span class="ctx"><span class="clb">Öneri</span><span class="cdb">Fikir veya geri bildirim paylaşmak istiyorum</span></span></button>
@@ -419,7 +420,7 @@ footer{flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center}
   </div>
 </div>
 
-<!-- ADMIN OVERLAY -->
+<!-- ADMIN -->
 
 <div id="adm-ov">
   <div id="adm-login">
@@ -443,16 +444,12 @@ footer{flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center}
 </div>
 
 <script>
-// ════════════════════════════════
-// YAPILANDIRMA — Bu değerleri değiştir
-// ════════════════════════════════
 const SB_URL = 'https://zzanfdceaqukezjhocib.supabase.co';
 const SB_KEY = 'sb_publishable_V-8X5qmnkhyGfTrcLilqoA_SdSY74k3';
-const ADMIN_PW = 'efe2026!'; // Admin şifreni buraya yaz
-// ════════════════════════════════
+const ADMIN_PW = 'efe2026!';
 
 const { createClient } = supabase;
-const db = SB_URL !== 'YOUR_SUPABASE_URL' ? createClient(SB_URL, SB_KEY) : null;
+const db = createClient(SB_URL, SB_KEY);
 
 // INTRO
 function enter() {
@@ -502,18 +499,8 @@ async function sendMsg() {
   const phone = document.getElementById('cf-p').value.trim();
   const msg = document.getElementById('cf-m').value.trim();
   if (!name || !sname || !msg) { alert('İsim, soyisim ve mesaj zorunludur.'); return; }
-
   const btn = document.getElementById('cf-btn');
   btn.textContent = 'Gönderiliyor...'; btn.disabled = true;
-
-  if (!db) {
-    setTimeout(() => {
-      document.getElementById('cs2').style.display = 'none';
-      document.getElementById('cs3').style.display = 'block';
-    }, 800);
-    return;
-  }
-
   try {
     const { error } = await db.from('messages').insert([{ type: selType, name, surname: sname, phone, message: msg }]);
     if (error) throw error;
@@ -525,7 +512,7 @@ async function sendMsg() {
   }
 }
 
-// ADMIN — klavyede "admin" yaz
+// ADMIN
 let seq = '';
 document.addEventListener('keypress', e => {
   seq += e.key;
@@ -559,11 +546,6 @@ function admLogin() {
 let allMsgs = [];
 
 async function loadMsgs() {
-  if (!db) {
-    document.getElementById('adm-msgs').innerHTML = '<div class="aempty">Supabase henüz bağlı değil. Kurulum adımlarını tamamla.</div>';
-    document.getElementById('adm-stats').innerHTML = '<div class="sb"><div class="sbn">—</div><div class="sbl">Toplam</div></div><div class="sb"><div class="sbn">—</div><div class="sbl">Şikayet</div></div><div class="sb"><div class="sbn">—</div><div class="sbl">Diğer</div></div>';
-    return;
-  }
   const { data, error } = await db.from('messages').select('*').order('created_at', { ascending: false });
   if (error) { console.error(error); return; }
   allMsgs = data || [];
