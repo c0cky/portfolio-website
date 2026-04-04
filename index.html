@@ -24,9 +24,9 @@ body{background:#080808;color:#f5f0e8;font-family:'JetBrains Mono',monospace;ove
 @keyframes hb{0%,100%{transform:scale(1);opacity:1}14%{transform:scale(1.1);opacity:0.7}28%{transform:scale(1);opacity:1}42%{transform:scale(1.05);opacity:0.85}}
 .glow{position:absolute;inset:-30px;border-radius:50%;background:radial-gradient(circle,rgba(232,184,75,0.15) 0%,transparent 70%);z-index:1;animation:glowp 3s ease-in-out infinite}
 @keyframes glowp{0%,100%{opacity:0.6;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
-.photo-circle{width:220px;height:220px;border-radius:50%;border:2.5px solid #e8b84b;overflow:hidden;background:#111;display:flex;align-items:center;justify-content:center;position:relative;z-index:2;transition:transform 0.4s,box-shadow 0.4s;animation:scIn 0.9s 0.1s both;box-shadow:0 0 40px rgba(232,184,75,0.2)}
+.photo-circle{width:220px;height:220px;border-radius:50%;border:2.5px solid #e8b84b;overflow:hidden;background:#111;position:relative;z-index:2;transition:transform 0.4s,box-shadow 0.4s;animation:scIn 0.9s 0.1s both;box-shadow:0 0 40px rgba(232,184,75,0.2)}
 .photo-circle:hover{transform:scale(1.06);box-shadow:0 0 60px rgba(232,184,75,0.4)}
-.photo-circle img{width:110%;height:110%;object-fit:cover;object-position:center 25%;filter:brightness(1.05) contrast(1.05);transform:scale(1.1)}
+.photo-circle img{width:110%;height:110%;object-fit:cover;object-position:center 22%;filter:brightness(1.05) contrast(1.05)}
 @keyframes scIn{from{opacity:0;transform:scale(0.82)}to{opacity:1;transform:scale(1)}}
 .intro-name{font-family:‘Playfair Display’,serif;font-size:2.6rem;font-weight:900;letter-spacing:0.05em;animation:fadeUp 0.8s 0.55s both}
 .intro-role{font-size:0.58rem;letter-spacing:0.2em;color:#555;text-transform:uppercase;margin-top:0.5rem;animation:fadeUp 0.8s 0.75s both}
@@ -34,9 +34,29 @@ body{background:#080808;color:#f5f0e8;font-family:'JetBrains Mono',monospace;ove
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 @keyframes blink{0%,100%{opacity:0.6}50%{opacity:0.2}}
 
-/* MAIN */
-#main{opacity:0;transform:translateY(20px);transition:opacity 0.8s,transform 0.8s}
-#main.visible{opacity:1;transform:translateY(0)}
+/* LANGUAGE SWITCHER */
+.lang-sw{
+position:fixed;top:1.2rem;right:5.5rem;z-index:600;
+display:flex;align-items:center;gap:0;
+background:rgba(20,20,20,0.9);
+border:1px solid rgba(232,184,75,0.2);
+backdrop-filter:blur(10px);
+overflow:hidden;
+}
+.lang-btn{
+display:flex;align-items:center;gap:0.5rem;
+padding:0.5rem 0.9rem;
+background:transparent;border:none;cursor:pointer;
+font-family:‘JetBrains Mono’,monospace;
+font-size:0.58rem;letter-spacing:0.15em;
+color:#555;text-transform:uppercase;
+transition:all 0.2s;
+position:relative;
+}
+.lang-btn .flag{font-size:1rem;line-height:1}
+.lang-btn.active{background:rgba(232,184,75,0.1);color:#e8b84b}
+.lang-btn:not(.active):hover{color:#999}
+.lang-divider{width:1px;height:20px;background:rgba(232,184,75,0.15)}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1.5rem 4rem;display:flex;justify-content:space-between;align-items:center;transition:background 0.3s,border-color 0.3s}
@@ -45,6 +65,10 @@ nav.scrolled{background:rgba(8,8,8,0.93);backdrop-filter:blur(12px);border-botto
 .nav-links{display:flex;gap:2.5rem;list-style:none}
 .nav-links a{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#666;text-decoration:none;transition:color 0.2s}
 .nav-links a:hover{color:#e8b84b}
+
+/* MAIN */
+#main{opacity:0;transform:translateY(20px);transition:opacity 0.8s,transform 0.8s}
+#main.visible{opacity:1;transform:translateY(0)}
 
 /* HERO */
 #hero{min-height:100vh;background:#080808;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:0 8rem;gap:4rem;position:relative;overflow:hidden}
@@ -86,8 +110,6 @@ section{padding:6rem 8rem}
 .sl{width:3rem;height:1px;background:rgba(232,184,75,0.2)}
 .st{font-family:‘Playfair Display’,serif;font-size:2.5rem;font-weight:900}
 .st em{color:#e8b84b;font-style:italic}
-
-/* HAKKIMDA */
 #about{background:#0d0d0d}
 .ag{display:grid;grid-template-columns:1.2fr 1fr;gap:5rem}
 .at{font-size:0.8rem;line-height:2;color:rgba(245,240,232,0.62)}
@@ -98,8 +120,6 @@ section{padding:6rem 8rem}
 .dv{font-size:0.7rem;color:#f5f0e8}
 .dv a{color:#f5f0e8;text-decoration:none;border-bottom:1px solid rgba(232,184,75,0.2);transition:color 0.2s,border-color 0.2s}
 .dv a:hover{color:#e8b84b;border-color:#e8b84b}
-
-/* DENEYİM */
 #experience{background:#080808}
 .ei{display:grid;grid-template-columns:180px 1fr;gap:2rem;padding:2.5rem 0;border-bottom:1px solid rgba(232,184,75,0.08);position:relative;overflow:hidden}
 .ei:first-child{border-top:1px solid rgba(232,184,75,0.08)}
@@ -112,8 +132,6 @@ section{padding:6rem 8rem}
 .eb{list-style:none}
 .eb li{font-size:0.7rem;line-height:1.8;color:rgba(245,240,232,0.5);padding-left:1.2rem;position:relative;margin-bottom:0.3rem}
 .eb li::before{content:‘→’;position:absolute;left:0;color:#e8b84b;font-size:0.6rem}
-
-/* PROJELER */
 #projects{background:#0d0d0d}
 .pg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
 .pc{border:1px solid rgba(232,184,75,0.1);padding:2rem;background:#080808;transition:transform 0.3s,border-color 0.3s,box-shadow 0.3s}
@@ -122,27 +140,21 @@ section{padding:6rem 8rem}
 .pn{font-family:‘Syne’,sans-serif;font-size:1rem;font-weight:700;margin-bottom:0.4rem}
 .ps{font-size:0.57rem;color:#444;margin-bottom:1rem;letter-spacing:0.08em}
 .pd{font-size:0.7rem;line-height:1.8;color:rgba(245,240,232,0.48)}
-
-/* BECERİLER */
 #skills{background:#080808}
 .skg{display:grid;grid-template-columns:repeat(2,1fr);gap:3rem}
 .skt{font-size:0.52rem;letter-spacing:0.25em;color:#e8b84b;text-transform:uppercase;margin-bottom:1.2rem;padding-bottom:0.8rem;border-bottom:1px solid rgba(232,184,75,0.1)}
 .skw{display:flex;flex-wrap:wrap;gap:0.6rem}
 .sk{padding:0.4rem 0.9rem;border:1px solid rgba(232,184,75,0.12);font-size:0.6rem;letter-spacing:0.08em;color:rgba(245,240,232,0.65);transition:all 0.2s;cursor:default}
 .sk:hover{background:rgba(232,184,75,0.07);border-color:#e8b84b;color:#e8b84b;transform:translateY(-2px)}
-
-/* İLETİŞİM */
 #contact{background:#0d0d0d;text-align:center}
 .ci{max-width:600px;margin:0 auto}
 .ctit{font-family:‘Playfair Display’,serif;font-size:clamp(2.5rem,4vw,4rem);font-weight:900;line-height:1.1;margin-bottom:1.5rem}
 .ctit em{color:#e8b84b;font-style:italic}
 .cx{font-size:0.75rem;line-height:1.9;color:rgba(245,240,232,0.48);margin-bottom:2.5rem}
 .cls{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap}
-.cl{font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:#555;text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px;transition:color 0.2s,border-color 0.2s}
-.cl:hover{color:#e8b84b;border-color:#e8b84b}
-
+.clink{font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:#555;text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px;transition:color 0.2s,border-color 0.2s}
+.clink:hover{color:#e8b84b;border-color:#e8b84b}
 footer{padding:2rem 8rem;border-top:1px solid rgba(232,184,75,0.07);display:flex;justify-content:space-between;align-items:center;font-size:0.56rem;letter-spacing:0.1em;color:#333;background:#080808}
-
 .reveal{opacity:0;transform:translateY(25px);transition:opacity 0.7s,transform 0.7s}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
@@ -226,35 +238,42 @@ footer{padding:2rem 8rem;border-top:1px solid rgba(232,184,75,0.07);display:flex
 section{padding:3.5rem 1.5rem}
 nav{padding:1.2rem 1.5rem}
 .nav-links{display:none}
+.lang-sw{right:1rem;top:1rem}
 .ag,.skg{grid-template-columns:1fr}
 .ei{grid-template-columns:1fr;gap:0.3rem}
 .pg{grid-template-columns:1fr}
 footer{flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center}
 #cb-pop{width:calc(100vw - 2rem);right:1rem;bottom:5rem}
-#adm-login{width:90%;padding:2rem}
-#adm-panel{width:100%;max-height:95vh}
 }
 </style>
 
 </head>
 <body>
 
+<!-- LANGUAGE SWITCHER -->
+
+<div class="lang-sw">
+  <button class="lang-btn active" id="btn-tr" onclick="setLang('tr')">
+    <span class="flag">🇹🇷</span> TR
+  </button>
+  <div class="lang-divider"></div>
+  <button class="lang-btn" id="btn-en" onclick="setLang('en')">
+    <span class="flag">🇬🇧</span> EN
+  </button>
+</div>
+
 <!-- INTRO -->
 
 <div id="intro">
-  <p class="intro-label">Dünyama hoş geldiniz</p>
+  <p class="intro-label" data-tr="Dünyama hoş geldiniz" data-en="Welcome to my world">Dünyama hoş geldiniz</p>
   <div class="photo-btn" id="photobtn">
     <div class="glow"></div>
-    <div class="ring r1"></div>
-    <div class="ring r2"></div>
-    <div class="ring r3"></div>
-    <div class="photo-circle">
-      <img src="photo1.jpeg" alt="Celal Efe">
-    </div>
+    <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
+    <div class="photo-circle"><img src="photo1.jpeg" alt="Celal Efe"></div>
   </div>
   <h1 class="intro-name">Celal Efe</h1>
-  <p class="intro-role">Yazılım Mühendisi · Geliştirici · DJ</p>
-  <p class="intro-tap">Girmek için dokun</p>
+  <p class="intro-role" data-tr="Yazılım Mühendisi · Geliştirici · DJ" data-en="Software Engineer · Developer · DJ">Yazılım Mühendisi · Geliştirici · DJ</p>
+  <p class="intro-tap" data-tr="Girmek için dokun" data-en="Tap to enter">Girmek için dokun</p>
 </div>
 
 <!-- MAIN -->
@@ -263,26 +282,25 @@ footer{flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center}
   <nav id="nav">
     <div class="nav-logo">C.Efe</div>
     <ul class="nav-links">
-      <li><a href="#about">Hakkımda</a></li>
-      <li><a href="#experience">Deneyim</a></li>
-      <li><a href="#projects">Projeler</a></li>
-      <li><a href="#skills">Beceriler</a></li>
-      <li><a href="#contact">İletişim</a></li>
+      <li><a href="#about" data-tr="Hakkımda" data-en="About">Hakkımda</a></li>
+      <li><a href="#experience" data-tr="Deneyim" data-en="Experience">Deneyim</a></li>
+      <li><a href="#projects" data-tr="Projeler" data-en="Projects">Projeler</a></li>
+      <li><a href="#skills" data-tr="Beceriler" data-en="Skills">Beceriler</a></li>
+      <li><a href="#contact" data-tr="İletişim" data-en="Contact">İletişim</a></li>
     </ul>
   </nav>
 
   <section id="hero">
-    <div class="blob b1"></div>
-    <div class="blob b2"></div>
+    <div class="blob b1"></div><div class="blob b2"></div>
     <div class="hero-bg">EFE</div>
     <div class="hl">
-      <div class="eyebrow">İş fırsatlarına açığım</div>
+      <div class="eyebrow" data-tr="İş fırsatlarına açığım" data-en="Available for opportunities">İş fırsatlarına açığım</div>
       <h1 class="hero-title">Celal<br><em>Efe</em></h1>
-      <p class="hero-sub">Yazılım Müh. · Web Geliştirici · Kameraman · DJ</p>
-      <p class="hero-text">Kullanıcı dostu uygulamalar geliştiriyor, sistemlerin arka planını merak ediyorum. Arayüz tasarlarken de, kamera tutarken de, sahnede müzik çalarken de aynı enerjiyi ve uyum yeteneğini getiriyorum.</p>
+      <p class="hero-sub" data-tr="Yazılım Müh. · Web Geliştirici · Kameraman · DJ" data-en="Software Eng. · Web Developer · Cameraman · DJ">Yazılım Müh. · Web Geliştirici · Kameraman · DJ</p>
+      <p class="hero-text" data-tr="Kullanıcı dostu uygulamalar geliştiriyor, sistemlerin arka planını merak ediyorum. Arayüz tasarlarken de, kamera tutarken de, sahnede müzik çalarken de aynı enerjiyi ve uyum yeteneğini getiriyorum." data-en="I build user-friendly apps and dig into how systems work behind the scenes. Whether designing a front-end, testing for vulnerabilities, or holding a camera — I adapt quickly and bring good energy.">Kullanıcı dostu uygulamalar geliştiriyor, sistemlerin arka planını merak ediyorum. Arayüz tasarlarken de, kamera tutarken de, sahnede müzik çalarken de aynı enerjiyi ve uyum yeteneğini getiriyorum.</p>
       <div class="ctas">
-        <a href="#projects" class="btn-p">Projeleri Gör</a>
-        <a href="#contact" class="btn-g">İletişime Geç</a>
+        <a href="#projects" class="btn-p" data-tr="Projeleri Gör" data-en="View Projects">Projeleri Gör</a>
+        <a href="#contact" class="btn-g" data-tr="İletişime Geç" data-en="Get In Touch">İletişime Geç</a>
       </div>
     </div>
     <div class="hr">
@@ -294,119 +312,144 @@ footer{flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center}
           </div>
         </div>
         <div class="htags">
-          <div class="htag">Gazimağusa, KK</div>
-          <div class="htag">DAÜ · 2026</div>
-          <div class="htag">İşe Açık</div>
+          <div class="htag" data-tr="Gazimağusa, KK" data-en="Famagusta, CY">Gazimağusa, KK</div>
+          <div class="htag" data-tr="DAÜ · 2026" data-en="EMU · 2026">DAÜ · 2026</div>
+          <div class="htag" data-tr="İşe Açık" data-en="Open to Work">İşe Açık</div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- HAKKIMDA / ABOUT -->
+
   <section id="about">
-    <div class="sh reveal"><span class="sn">01</span><div class="sl"></div><h2 class="st">Hakkım<em>da</em></h2></div>
+    <div class="sh reveal">
+      <span class="sn">01</span><div class="sl"></div>
+      <h2 class="st" data-tr="Hakkım<em>da</em>" data-en="About <em>Me</em>">Hakkım<em>da</em></h2>
+    </div>
     <div class="ag">
       <div class="at reveal">
-        <p>Doğu Akdeniz Üniversitesi'nde Yazılım Mühendisliği okuyan, gerçekten çalışan ve güzel görünen şeyler yapmayı seven birisiyim. Ön yüz geliştirme ve veritabanı güvenliği odak noktalarım; ama tek bir alanda kalmak benim için yeterli olmaz.</p>
-        <p>Kod dışında Urban Cypriot bünyesinde kameraman ve video editörü olarak çalışıyor, Gazimağusa'da 12 farklı mekânda Resident DJ olarak sahne alıyorum. Sahne enerjisi ekip çalışmasına da birebir yansıyor.</p>
-        <p>Neşeli, etik ve son derece meraklı biriyim. Hızlı öğrenir, gittiğim her yere katkı sağlarım.</p>
+        <p data-tr="Doğu Akdeniz Üniversitesi'nde Yazılım Mühendisliği okuyan, gerçekten çalışan ve güzel görünen şeyler yapmayı seven birisiyim. Ön yüz geliştirme ve veritabanı güvenliği odak noktalarım; ama tek bir alanda kalmak benim için yeterli olmaz." data-en="I'm a Software Engineering student at Eastern Mediterranean University who loves building things that actually work and look great. My focus is front-end development and database security — but staying in just one field was never enough for me.">Doğu Akdeniz Üniversitesi'nde Yazılım Mühendisliği okuyan, gerçekten çalışan ve güzel görünen şeyler yapmayı seven birisiyim. Ön yüz geliştirme ve veritabanı güvenliği odak noktalarım; ama tek bir alanda kalmak benim için yeterli olmaz.</p>
+        <p data-tr="Kod dışında Urban Cypriot bünyesinde kameraman ve video editörü olarak çalışıyor, Gazimağusa'da 12 farklı mekânda Resident DJ olarak sahne alıyorum. Sahne enerjisi ekip çalışmasına da birebir yansıyor." data-en="Outside of code, I work as a cameraman and video editor at Urban Cypriot, and I've performed as a Resident DJ at 12 different venues across Famagusta. The same energy that works on a dancefloor works in a dev team.">Kod dışında Urban Cypriot bünyesinde kameraman ve video editörü olarak çalışıyor, Gazimağusa'da 12 farklı mekânda Resident DJ olarak sahne alıyorum. Sahne enerjisi ekip çalışmasına da birebir yansıyor.</p>
+        <p data-tr="Neşeli, etik ve son derece meraklı biriyim. Hızlı öğrenir, gittiğim her yere katkı sağlarım." data-en="Cheerful, ethical, and highly curious. I learn fast and contribute wherever I land.">Neşeli, etik ve son derece meraklı biriyim. Hızlı öğrenir, gittiğim her yere katkı sağlarım.</p>
       </div>
       <div class="reveal">
-        <div class="dr"><span class="dl">Şehir</span><span class="dv">Gazimağusa, Kıbrıs</span></div>
-        <div class="dr"><span class="dl">Üniversite</span><span class="dv">Doğu Akdeniz Üniversitesi</span></div>
-        <div class="dr"><span class="dl">Bölüm</span><span class="dv">Yazılım Müh. · 2026</span></div>
-        <div class="dr"><span class="dl">E-posta</span><span class="dv"><a href="mailto:celal.efe@cmail.com">celal.efe@cmail.com</a></span></div>
+        <div class="dr"><span class="dl" data-tr="Şehir" data-en="Location">Şehir</span><span class="dv" data-tr="Gazimağusa, Kıbrıs" data-en="Famagusta, Cyprus">Gazimağusa, Kıbrıs</span></div>
+        <div class="dr"><span class="dl" data-tr="Üniversite" data-en="University">Üniversite</span><span class="dv" data-tr="Doğu Akdeniz Üniversitesi" data-en="Eastern Mediterranean University">Doğu Akdeniz Üniversitesi</span></div>
+        <div class="dr"><span class="dl" data-tr="Bölüm" data-en="Degree">Bölüm</span><span class="dv" data-tr="Yazılım Müh. · 2026" data-en="Software Eng. · 2026">Yazılım Müh. · 2026</span></div>
+        <div class="dr"><span class="dl" data-tr="E-posta" data-en="Email">E-posta</span><span class="dv"><a href="mailto:celal.efe@cmail.com">celal.efe@cmail.com</a></span></div>
         <div class="dr"><span class="dl">LinkedIn</span><span class="dv"><a href="https://linkedin.com/in/celal-efe" target="_blank">linkedin.com/in/celal-efe</a></span></div>
         <div class="dr"><span class="dl">GitHub</span><span class="dv"><a href="https://github.com/c0cky" target="_blank">github.com/c0cky</a></span></div>
       </div>
     </div>
   </section>
 
+  <!-- DENEYİM / EXPERIENCE -->
+
   <section id="experience">
-    <div class="sh reveal"><span class="sn">02</span><div class="sl"></div><h2 class="st">Dene<em>yim</em></h2></div>
+    <div class="sh reveal">
+      <span class="sn">02</span><div class="sl"></div>
+      <h2 class="st" data-tr="Dene<em>yim</em>" data-en="Experi<em>ence</em>">Dene<em>yim</em></h2>
+    </div>
     <div>
       <div class="ei reveal">
-        <div class="ed">Oca 2023 — Günümüz</div>
+        <div class="ed" data-tr="Oca 2023 — Günümüz" data-en="Jan 2023 — Present">Oca 2023 — Günümüz</div>
         <div class="ec">
-          <div class="er">Serbest Web Geliştiricisi</div>
-          <div class="eco">Bağımsız · Çeşitli Müşteriler</div>
+          <div class="er" data-tr="Serbest Web Geliştiricisi" data-en="Freelance Web Developer">Serbest Web Geliştiricisi</div>
+          <div class="eco" data-tr="Bağımsız · Çeşitli Müşteriler" data-en="Self-Employed · Various Clients">Bağımsız · Çeşitli Müşteriler</div>
           <ul class="eb">
-            <li>Yerel otomobil galerileri için modern ve duyarlı web siteleri tasarlayıp geliştirdim.</li>
-            <li>HTML, CSS, JavaScript ve React kullanarak temiz bir UI/UX deneyimi sundum.</li>
+            <li data-tr="Yerel otomobil galerileri için modern ve duyarlı web siteleri tasarlayıp geliştirdim." data-en="Designed and built responsive modern websites for local car dealerships.">Yerel otomobil galerileri için modern ve duyarlı web siteleri tasarlayıp geliştirdim.</li>
+            <li data-tr="HTML, CSS, JavaScript ve React kullanarak temiz bir UI/UX deneyimi sundum." data-en="Delivered clean UI/UX using HTML, CSS, JavaScript, and React.">HTML, CSS, JavaScript ve React kullanarak temiz bir UI/UX deneyimi sundum.</li>
           </ul>
         </div>
       </div>
       <div class="ei reveal">
-        <div class="ed">Oca 2022 — Günümüz</div>
+        <div class="ed" data-tr="Oca 2022 — Günümüz" data-en="Jan 2022 — Present">Oca 2022 — Günümüz</div>
         <div class="ec">
-          <div class="er">Full-Stack Geliştirici &amp; Kameraman</div>
-          <div class="eco">Urban Cypriot · Gazimağusa</div>
+          <div class="er" data-tr="Full-Stack Geliştirici &amp; Kameraman" data-en="Full-Stack Developer &amp; Cameraman">Full-Stack Geliştirici &amp; Kameraman</div>
+          <div class="eco">Urban Cypriot · <span data-tr="Gazimağusa" data-en="Famagusta">Gazimağusa</span></div>
           <ul class="eb">
-            <li>Halı saha rezervasyon sistemini sıfırdan full-stack olarak geliştirdim.</li>
-            <li>Etkinliklerde kamera çekimi ve video düzenleme yaptım.</li>
+            <li data-tr="Halı saha rezervasyon sistemini sıfırdan full-stack olarak geliştirdim." data-en="Built a full-stack football pitch reservation system from scratch.">Halı saha rezervasyon sistemini sıfırdan full-stack olarak geliştirdim.</li>
+            <li data-tr="Etkinliklerde kamera çekimi ve video düzenleme yaptım." data-en="Handled camera work and video editing for company events.">Etkinliklerde kamera çekimi ve video düzenleme yaptım.</li>
           </ul>
         </div>
       </div>
       <div class="ei reveal">
-        <div class="ed">Oca 2021 — Günümüz</div>
+        <div class="ed" data-tr="Oca 2021 — Günümüz" data-en="Jan 2021 — Present">Oca 2021 — Günümüz</div>
         <div class="ec">
           <div class="er">Resident DJ</div>
-          <div class="eco">Çeşitli Mekânlar · Gazimağusa (12 Lokasyon)</div>
+          <div class="eco"><span data-tr="Çeşitli Mekânlar · Gazimağusa (12 Lokasyon)" data-en="Various Venues · Famagusta (12 Locations)">Çeşitli Mekânlar · Gazimağusa (12 Lokasyon)</span></div>
           <ul class="eb">
-            <li>12 farklı mekânda sahne aldım; kalabalık enerjisini yönettim, teknik ses sorunlarını anlık çözdüm.</li>
-            <li>Yüksek baskı altında sakin kalma ve pozitif enerji koruma becerisi geliştirdim.</li>
+            <li data-tr="12 farklı mekânda sahne aldım; kalabalık enerjisini yönettim, teknik ses sorunlarını anlık çözdüm." data-en="Performed at 12 venues, managing crowd energy and solving technical audio issues on the spot.">12 farklı mekânda sahne aldım; kalabalık enerjisini yönettim, teknik ses sorunlarını anlık çözdüm.</li>
+            <li data-tr="Yüksek baskı altında sakin kalma ve pozitif enerji koruma becerisi geliştirdim." data-en="Developed composure and resilience in high-pressure environments.">Yüksek baskı altında sakin kalma ve pozitif enerji koruma becerisi geliştirdim.</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- PROJELER / PROJECTS -->
+
   <section id="projects">
-    <div class="sh reveal"><span class="sn">03</span><div class="sl"></div><h2 class="st">Proj<em>eler</em></h2></div>
+    <div class="sh reveal">
+      <span class="sn">03</span><div class="sl"></div>
+      <h2 class="st" data-tr="Proj<em>eler</em>" data-en="Pro<em>jects</em>">Proj<em>eler</em></h2>
+    </div>
     <div class="pg">
       <div class="pc reveal">
         <div class="py">2023</div>
-        <div class="pn">DAÜ Kütüphane Rezervasyon Uygulaması</div>
+        <div class="pn" data-tr="DAÜ Kütüphane Rezervasyon Uygulaması" data-en="EMU Library Booking App">DAÜ Kütüphane Rezervasyon Uygulaması</div>
         <div class="ps">React Native · Node.js · Firebase</div>
-        <div class="pd">Üniversite öğrencilerinin çalışma alanı rezervasyonu yapabilmesi için geliştirilen çapraz platform mobil ve web uygulaması.</div>
+        <div class="pd" data-tr="Üniversite öğrencilerinin çalışma alanı rezervasyonu yapabilmesi için geliştirilen çapraz platform uygulaması." data-en="Cross-platform mobile and web app for university students to book study spots easily.">Üniversite öğrencilerinin çalışma alanı rezervasyonu yapabilmesi için geliştirilen çapraz platform uygulaması.</div>
       </div>
       <div class="pc reveal">
         <div class="py">2025</div>
-        <div class="pn">Gerçek Zamanlı Drone Simülatörü</div>
+        <div class="pn" data-tr="Gerçek Zamanlı Drone Simülatörü" data-en="Real-Time Drone Simulator">Gerçek Zamanlı Drone Simülatörü</div>
         <div class="ps">Unity · C#</div>
-        <div class="pd">Üniversite projesi kapsamında gerçekçi fizik motoru ile geliştirilen gerçek zamanlı drone simülasyonu.</div>
+        <div class="pd" data-tr="Gerçekçi fizik motoru ile geliştirilen gerçek zamanlı drone simülasyonu." data-en="Real-time drone simulation with realistic physics built for a university project.">Gerçekçi fizik motoru ile geliştirilen gerçek zamanlı drone simülasyonu.</div>
       </div>
       <div class="pc reveal">
-        <div class="py">2026 · Devam Ediyor</div>
-        <div class="pn">İsimsiz 2D RPG Oyunu</div>
+        <div class="py" data-tr="2026 · Devam Ediyor" data-en="2026 · In Progress">2026 · Devam Ediyor</div>
+        <div class="pn" data-tr="İsimsiz 2D RPG Oyunu" data-en="Untitled 2D RPG Game">İsimsiz 2D RPG Oyunu</div>
         <div class="ps">Unity · C#</div>
-        <div class="pd">Mekaniklerden envanter sistemine kadar her şeyini sıfırdan kurguladığım 2D RPG oyunu — hâlâ geliştirme aşamasında.</div>
+        <div class="pd" data-tr="Mekaniklerden envanter sistemine kadar her şeyini sıfırdan kurguladığım 2D RPG — hâlâ geliştirme aşamasında." data-en="2D RPG from mechanics to full inventory systems — all game logic built from scratch, still in development.">Mekaniklerden envanter sistemine kadar her şeyini sıfırdan kurguladığım 2D RPG — hâlâ geliştirme aşamasında.</div>
       </div>
     </div>
   </section>
 
+  <!-- BECERİLER / SKILLS -->
+
   <section id="skills">
-    <div class="sh reveal"><span class="sn">04</span><div class="sl"></div><h2 class="st">Teknik <em>Beceriler</em></h2></div>
+    <div class="sh reveal">
+      <span class="sn">04</span><div class="sl"></div>
+      <h2 class="st" data-tr="Teknik <em>Beceriler</em>" data-en="Tech <em>Skills</em>">Teknik <em>Beceriler</em></h2>
+    </div>
     <div class="skg">
-      <div class="reveal"><div class="skt">Diller &amp; Web</div><div class="skw"><span class="sk">HTML5</span><span class="sk">CSS3</span><span class="sk">JavaScript</span><span class="sk">TypeScript</span><span class="sk">Python</span><span class="sk">C#</span></div></div>
-      <div class="reveal"><div class="skt">Çerçeveler</div><div class="skw"><span class="sk">React.js</span><span class="sk">React Native</span><span class="sk">Node.js</span></div></div>
-      <div class="reveal"><div class="skt">Sistem &amp; Güvenlik</div><div class="skw"><span class="sk">Ubuntu</span><span class="sk">Kali Linux</span><span class="sk">Sızma Testi</span><span class="sk">Zafiyet Giderme</span></div></div>
-      <div class="reveal"><div class="skt">Araçlar</div><div class="skw"><span class="sk">Git</span><span class="sk">Unity 3D</span><span class="sk">Firebase</span><span class="sk">Premiere Pro</span></div></div>
+      <div class="reveal"><div class="skt" data-tr="Diller &amp; Web" data-en="Languages &amp; Web">Diller &amp; Web</div><div class="skw"><span class="sk">HTML5</span><span class="sk">CSS3</span><span class="sk">JavaScript</span><span class="sk">TypeScript</span><span class="sk">Python</span><span class="sk">C#</span></div></div>
+      <div class="reveal"><div class="skt" data-tr="Çerçeveler" data-en="Frameworks">Çerçeveler</div><div class="skw"><span class="sk">React.js</span><span class="sk">React Native</span><span class="sk">Node.js</span></div></div>
+      <div class="reveal"><div class="skt" data-tr="Sistem &amp; Güvenlik" data-en="System &amp; Security">Sistem &amp; Güvenlik</div><div class="skw"><span class="sk">Ubuntu</span><span class="sk">Kali Linux</span><span class="sk" data-tr="Sızma Testi" data-en="Penetration Testing">Sızma Testi</span><span class="sk" data-tr="Zafiyet Giderme" data-en="Vulnerability Fixing">Zafiyet Giderme</span></div></div>
+      <div class="reveal"><div class="skt" data-tr="Araçlar" data-en="Tools">Araçlar</div><div class="skw"><span class="sk">Git</span><span class="sk">Unity 3D</span><span class="sk">Firebase</span><span class="sk">Premiere Pro</span></div></div>
     </div>
   </section>
+
+  <!-- İLETİŞİM / CONTACT -->
 
   <section id="contact">
     <div class="ci">
-      <h2 class="ctit reveal">Birlikte bir şeyler <em>üretelim.</em></h2>
-      <p class="cx reveal">Bir web projesi, iş birliği ya da sadece sohbet — yeni fikirlere ve fırsatlara her zaman açığım.</p>
+      <h2 class="ctit reveal" data-tr="Birlikte bir şeyler <em>üretelim.</em>" data-en="Let's build something <em>great.</em>">Birlikte bir şeyler <em>üretelim.</em></h2>
+      <p class="cx reveal" data-tr="Bir web projesi, iş birliği ya da sadece sohbet — yeni fikirlere ve fırsatlara her zaman açığım." data-en="Whether it's a web project, a collaboration, or just a conversation — I'm always open to new ideas and opportunities.">Bir web projesi, iş birliği ya da sadece sohbet — yeni fikirlere ve fırsatlara her zaman açığım.</p>
       <div class="cls reveal">
-        <a href="mailto:celal.efe@cmail.com" class="cl">✉ celal.efe@cmail.com</a>
-        <a href="https://linkedin.com/in/celal-efe" target="_blank" class="cl">in linkedin</a>
-        <a href="https://github.com/c0cky" target="_blank" class="cl">⌥ github/c0cky</a>
+        <a href="mailto:celal.efe@cmail.com" class="clink">✉ celal.efe@cmail.com</a>
+        <a href="https://linkedin.com/in/celal-efe" target="_blank" class="clink">in LinkedIn</a>
+        <a href="https://github.com/c0cky" target="_blank" class="clink">⌥ github/c0cky</a>
       </div>
     </div>
   </section>
 
-  <footer><span>© 2026 Celal Efe</span><span>Gazimağusa'da ♥ ile tasarlandı</span></footer>
+  <footer>
+    <span>© 2026 Celal Efe</span>
+    <span data-tr="Gazimağusa'da ♥ ile tasarlandı" data-en="Designed with ♥ in Famagusta">Gazimağusa'da ♥ ile tasarlandı</span>
+  </footer>
 </div>
 
 <!-- CHATBOT -->
@@ -415,35 +458,42 @@ footer{flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center}
 
 <div id="cb-pop">
   <div class="cbh">
-    <div><div class="cbht">Celal Efe</div><div class="cbhs">● Çevrimiçi · Genellikle hızlı yanıtlar</div></div>
+    <div>
+      <div class="cbht">Celal Efe</div>
+      <div class="cbhs" data-tr="● Çevrimiçi · Genellikle hızlı yanıtlar" data-en="● Online · Usually fast replies">● Çevrimiçi · Genellikle hızlı yanıtlar</div>
+    </div>
     <button class="cbx" onclick="toggleChat()">✕</button>
   </div>
   <div class="cbb">
     <div id="cs1">
-      <p class="cq">Merhaba! 👋 Size nasıl yardımcı olabilirim?</p>
+      <p class="cq" data-tr="Merhaba! 👋 Size nasıl yardımcı olabilirim?" data-en="Hello! 👋 How can I help you?">Merhaba! 👋 Size nasıl yardımcı olabilirim?</p>
       <div class="cats">
-        <button class="cat" onclick="selCat('Sikayet')"><span class="cico">⚠️</span><span class="ctx"><span class="clb">Şikayet</span><span class="cdb">Bir sorun bildirmek istiyorum</span></span></button>
-        <button class="cat" onclick="selCat('Oneri')"><span class="cico">💡</span><span class="ctx"><span class="clb">Öneri</span><span class="cdb">Fikir veya geri bildirim paylaşmak istiyorum</span></span></button>
-        <button class="cat" onclick="selCat('Business')"><span class="cico">💼</span><span class="ctx"><span class="clb">İş Teklifi</span><span class="cdb">İş birliği veya proje teklifi</span></span></button>
+        <button class="cat" onclick="selCat('Sikayet')"><span class="cico">⚠️</span><span class="ctx"><span class="clb" data-tr="Şikayet" data-en="Complaint">Şikayet</span><span class="cdb" data-tr="Bir sorun bildirmek istiyorum" data-en="I want to report an issue">Bir sorun bildirmek istiyorum</span></span></button>
+        <button class="cat" onclick="selCat('Oneri')"><span class="cico">💡</span><span class="ctx"><span class="clb" data-tr="Öneri" data-en="Suggestion">Öneri</span><span class="cdb" data-tr="Fikir veya geri bildirim paylaşmak istiyorum" data-en="I want to share an idea or feedback">Fikir veya geri bildirim paylaşmak istiyorum</span></span></button>
+        <button class="cat" onclick="selCat('Business')"><span class="cico">💼</span><span class="ctx"><span class="clb" data-tr="İş Teklifi" data-en="Business">İş Teklifi</span><span class="cdb" data-tr="İş birliği veya proje teklifi" data-en="Collaboration or project proposal">İş birliği veya proje teklifi</span></span></button>
       </div>
     </div>
     <div id="cs2">
-      <button class="cbk" onclick="goBack()">← Geri dön</button>
+      <button class="cbk" onclick="goBack()">← <span data-tr="Geri dön" data-en="Go back">Geri dön</span></button>
       <div class="csl" id="csl"></div>
       <div class="cf">
         <div class="row">
-          <div><label>İsim</label><input type="text" id="cf-n" placeholder="Adınız"></div>
-          <div><label>Soyisim</label><input type="text" id="cf-s" placeholder="Soyadınız"></div>
+          <div><label data-tr="İsim" data-en="First Name">İsim</label><input type="text" id="cf-n" data-placeholder-tr="Adınız" data-placeholder-en="Your name" placeholder="Adınız"></div>
+          <div><label data-tr="Soyisim" data-en="Last Name">Soyisim</label><input type="text" id="cf-s" data-placeholder-tr="Soyadınız" data-placeholder-en="Your surname" placeholder="Soyadınız"></div>
         </div>
-        <label>Telefon (opsiyonel)</label>
+        <label data-tr="Telefon (opsiyonel)" data-en="Phone (optional)">Telefon (opsiyonel)</label>
         <input type="tel" id="cf-p" placeholder="+90 5xx xxx xx xx">
-        <label>Mesajınız</label>
-        <textarea id="cf-m" placeholder="Mesajınızı buraya yazın..." maxlength="500"></textarea>
+        <label data-tr="Mesajınız" data-en="Your Message">Mesajınız</label>
+        <textarea id="cf-m" data-placeholder-tr="Mesajınızı buraya yazın..." data-placeholder-en="Write your message here..." placeholder="Mesajınızı buraya yazın..." maxlength="500"></textarea>
         <div class="ccc" id="cf-cc">0 / 500</div>
-        <button class="csb" id="cf-btn" onclick="sendMsg()">Gönder →</button>
+        <button class="csb" id="cf-btn" onclick="sendMsg()" data-tr="Gönder →" data-en="Send →">Gönder →</button>
       </div>
     </div>
-    <div id="cs3"><div class="csi">✅</div><div class="cstt">Mesajınız alındı!</div><p class="cstx">En kısa sürede dönüş yapacağım. Teşekkürler!</p></div>
+    <div id="cs3">
+      <div class="csi">✅</div>
+      <div class="cstt" data-tr="Mesajınız alındı!" data-en="Message received!">Mesajınız alındı!</div>
+      <p class="cstx" data-tr="En kısa sürede dönüş yapacağım. Teşekkürler!" data-en="I'll get back to you as soon as possible. Thank you!">En kısa sürede dönüş yapacağım. Teşekkürler!</p>
+    </div>
   </div>
 </div>
 
@@ -474,10 +524,36 @@ footer{flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center}
 const SB_URL = 'https://zzanfdceaqukezjhocib.supabase.co';
 const SB_KEY = 'sb_publishable_V-8X5qmnkhyGfTrcLilqoA_SdSY74k3';
 const ADMIN_PW = 'efe2026!';
-
 const { createClient } = supabase;
 const db = createClient(SB_URL, SB_KEY);
 
+// ── DİL SİSTEMİ ──
+let currentLang = 'tr';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.getElementById('btn-tr').classList.toggle('active', lang === 'tr');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+  // Tüm data-tr / data-en elementlerini güncelle
+  document.querySelectorAll('[data-tr]').forEach(el => {
+    const val = el.getAttribute('data-' + lang);
+    if (!val) return;
+    // innerHTML mi yoksa textContent mi?
+    if (val.includes('<')) el.innerHTML = val;
+    else el.textContent = val;
+  });
+
+  // Placeholder'ları güncelle
+  document.querySelectorAll('[data-placeholder-tr]').forEach(el => {
+    el.placeholder = el.getAttribute('data-placeholder-' + lang) || el.placeholder;
+  });
+
+  // html lang attr
+  document.documentElement.lang = lang;
+}
+
+// ── INTRO ──
 function enter() {
   document.getElementById('intro').classList.add('exit');
   setTimeout(() => {
@@ -489,22 +565,28 @@ const pb = document.getElementById('photobtn');
 pb.addEventListener('click', enter);
 pb.addEventListener('touchend', e => { e.preventDefault(); enter(); });
 
+// ── NAV ──
 window.addEventListener('scroll', () => {
   document.getElementById('nav').classList.toggle('scrolled', scrollY > 40);
 });
 
+// ── SCROLL REVEAL ──
 const obs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('visible'); }), { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
+// ── CHATBOT ──
 let selType = '';
 function toggleChat() { document.getElementById('cb-pop').classList.toggle('open'); }
 
 function selCat(t) {
   selType = t;
-  const labels = { Sikayet: '⚠️ Şikayet', Oneri: '💡 Öneri', Business: '💼 İş Teklifi' };
+  const labels = {
+    tr: { Sikayet: '⚠️ Şikayet', Oneri: '💡 Öneri', Business: '💼 İş Teklifi' },
+    en: { Sikayet: '⚠️ Complaint', Oneri: '💡 Suggestion', Business: '💼 Business' }
+  };
   document.getElementById('cs1').style.display = 'none';
   document.getElementById('cs2').style.display = 'block';
-  document.getElementById('csl').textContent = labels[t];
+  document.getElementById('csl').textContent = labels[currentLang][t];
 }
 
 function goBack() {
@@ -521,9 +603,11 @@ async function sendMsg() {
   const sname = document.getElementById('cf-s').value.trim();
   const phone = document.getElementById('cf-p').value.trim();
   const msg = document.getElementById('cf-m').value.trim();
-  if (!name || !sname || !msg) { alert('İsim, soyisim ve mesaj zorunludur.'); return; }
+  const warn = currentLang === 'tr' ? 'İsim, soyisim ve mesaj zorunludur.' : 'Name, surname and message are required.';
+  if (!name || !sname || !msg) { alert(warn); return; }
   const btn = document.getElementById('cf-btn');
-  btn.textContent = 'Gönderiliyor...'; btn.disabled = true;
+  btn.textContent = currentLang === 'tr' ? 'Gönderiliyor...' : 'Sending...';
+  btn.disabled = true;
   try {
     const { error } = await db.from('messages').insert([{ type: selType, name, surname: sname, phone, message: msg }]);
     if (error) throw error;
@@ -531,10 +615,12 @@ async function sendMsg() {
     document.getElementById('cs3').style.display = 'block';
   } catch (e) {
     console.error(e);
-    btn.textContent = 'Hata! Tekrar deneyin'; btn.disabled = false;
+    btn.textContent = currentLang === 'tr' ? 'Hata! Tekrar deneyin' : 'Error! Try again';
+    btn.disabled = false;
   }
 }
 
+// ── ADMIN ──
 let seq = '';
 document.addEventListener('keypress', e => {
   seq += e.key;
@@ -572,18 +658,15 @@ async function loadMsgs() {
   allMsgs = data || [];
   renderStats(); renderMsgs(allMsgs);
 }
-
 function renderStats() {
   const t = allMsgs.length, s = allMsgs.filter(m => m.type === 'Sikayet').length, o = t - s;
   document.getElementById('adm-stats').innerHTML = `<div class="sb"><div class="sbn">${t}</div><div class="sbl">Toplam</div></div><div class="sb"><div class="sbn">${s}</div><div class="sbl">Şikayet</div></div><div class="sb"><div class="sbn">${o}</div><div class="sbl">Öneri &amp; İş</div></div>`;
 }
-
 function fMsg(type, btn) {
   document.querySelectorAll('.fb').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   renderMsgs(type === 'all' ? allMsgs : allMsgs.filter(m => m.type === type));
 }
-
 function renderMsgs(msgs) {
   const c = document.getElementById('adm-msgs');
   if (!msgs.length) { c.innerHTML = '<div class="aempty">Henüz mesaj yok.</div>'; return; }
@@ -591,7 +674,7 @@ function renderMsgs(msgs) {
   const cls = { Sikayet: 's', Oneri: 'o', Business: 'b' };
   c.innerHTML = msgs.map(m => {
     const dt = new Date(m.created_at).toLocaleString('tr-TR');
-    return `<div class="mc"><div class="mm"><span class="mtype ${cls[m.type] || 'b'}">${labels[m.type] || m.type}</span><span class="mdate">${dt}</span></div><div class="mname">${m.name} ${m.surname}</div><div class="mcontact">${m.phone || 'Telefon belirtilmedi'}</div><div class="mmsg">${m.message}</div></div>`;
+    return `<div class="mc"><div class="mm"><span class="mtype ${cls[m.type]||'b'}">${labels[m.type]||m.type}</span><span class="mdate">${dt}</span></div><div class="mname">${m.name} ${m.surname}</div><div class="mcontact">${m.phone||'Telefon belirtilmedi'}</div><div class="mmsg">${m.message}</div></div>`;
   }).join('');
 }
 </script>
