@@ -16,7 +16,7 @@ body{background:#080808;color:#f5f0e8;font-family:'JetBrains Mono',monospace;ove
 #intro{position:fixed;inset:0;background:#080808;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:1000;transition:opacity 0.9s ease,transform 0.9s ease}
 #intro.exit{opacity:0;transform:scale(1.04);pointer-events:none}
 .intro-label{font-size:0.58rem;letter-spacing:0.35em;color:#e8b84b;text-transform:uppercase;margin-bottom:2.5rem;animation:fadeUp 0.8s 0.2s both}
-.photo-btn{position:relative;width:220px;height:220px;cursor:pointer;margin-bottom:2rem}
+.photo-btn{position:relative;width:200px;height:200px;cursor:pointer;margin-bottom:2rem}
 .ring{position:absolute;border-radius:50%;border:1px solid rgba(232,184,75,0.3);animation:hb 2.5s ease-in-out infinite}
 .r1{inset:-18px;animation-delay:0s}
 .r2{inset:-36px;animation-delay:0.25s;border-color:rgba(232,184,75,0.15)}
@@ -24,9 +24,21 @@ body{background:#080808;color:#f5f0e8;font-family:'JetBrains Mono',monospace;ove
 @keyframes hb{0%,100%{transform:scale(1);opacity:1}14%{transform:scale(1.1);opacity:0.7}28%{transform:scale(1);opacity:1}42%{transform:scale(1.05);opacity:0.85}}
 .glow{position:absolute;inset:-30px;border-radius:50%;background:radial-gradient(circle,rgba(232,184,75,0.15) 0%,transparent 70%);z-index:1;animation:glowp 3s ease-in-out infinite}
 @keyframes glowp{0%,100%{opacity:0.6;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
-.photo-circle{width:220px;height:220px;border-radius:50%;border:2.5px solid #e8b84b;overflow:hidden;background:#111;position:relative;z-index:2;transition:transform 0.4s,box-shadow 0.4s;animation:scIn 0.9s 0.1s both;box-shadow:0 0 40px rgba(232,184,75,0.2)}
+.photo-circle{
+width:200px;height:200px;border-radius:50%;
+border:2.5px solid #e8b84b;overflow:hidden;
+background:#111;position:relative;z-index:2;
+transition:transform 0.4s,box-shadow 0.4s;
+animation:scIn 0.9s 0.1s both;
+box-shadow:0 0 40px rgba(232,184,75,0.2);
+}
 .photo-circle:hover{transform:scale(1.06);box-shadow:0 0 60px rgba(232,184,75,0.4)}
-.photo-circle img{width:110%;height:110%;object-fit:cover;object-position:center 22%;filter:brightness(1.05) contrast(1.05)}
+/* Fotoğraf: yüzü ortala, doğal boyut */
+.photo-circle img{
+width:100%;height:100%;
+object-fit:cover;
+object-position:center 30%;
+}
 @keyframes scIn{from{opacity:0;transform:scale(0.82)}to{opacity:1;transform:scale(1)}}
 .intro-name{font-family:‘Playfair Display’,serif;font-size:2.6rem;font-weight:900;letter-spacing:0.05em;animation:fadeUp 0.8s 0.55s both}
 .intro-role{font-size:0.58rem;letter-spacing:0.2em;color:#555;text-transform:uppercase;margin-top:0.5rem;animation:fadeUp 0.8s 0.75s both}
@@ -34,44 +46,45 @@ body{background:#080808;color:#f5f0e8;font-family:'JetBrains Mono',monospace;ove
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 @keyframes blink{0%,100%{opacity:0.6}50%{opacity:0.2}}
 
-/* LANGUAGE SWITCHER */
-.lang-sw{
-position:fixed;top:1.2rem;right:5.5rem;z-index:600;
-display:flex;align-items:center;gap:0;
-background:rgba(20,20,20,0.9);
-border:1px solid rgba(232,184,75,0.2);
-backdrop-filter:blur(10px);
-overflow:hidden;
-}
-.lang-btn{
-display:flex;align-items:center;gap:0.5rem;
-padding:0.5rem 0.9rem;
-background:transparent;border:none;cursor:pointer;
-font-family:‘JetBrains Mono’,monospace;
-font-size:0.58rem;letter-spacing:0.15em;
-color:#555;text-transform:uppercase;
-transition:all 0.2s;
-position:relative;
-}
-.lang-btn .flag{font-size:1rem;line-height:1}
-.lang-btn.active{background:rgba(232,184,75,0.1);color:#e8b84b}
-.lang-btn:not(.active):hover{color:#999}
-.lang-divider{width:1px;height:20px;background:rgba(232,184,75,0.15)}
-
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1.5rem 4rem;display:flex;justify-content:space-between;align-items:center;transition:background 0.3s,border-color 0.3s}
-nav.scrolled{background:rgba(8,8,8,0.93);backdrop-filter:blur(12px);border-bottom:1px solid rgba(232,184,75,0.1)}
-.nav-logo{font-family:‘Playfair Display’,serif;font-size:1.2rem;font-style:italic;color:#e8b84b}
-.nav-links{display:flex;gap:2.5rem;list-style:none}
-.nav-links a{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#666;text-decoration:none;transition:color 0.2s}
-.nav-links a:hover{color:#e8b84b}
-
 /* MAIN */
 #main{opacity:0;transform:translateY(20px);transition:opacity 0.8s,transform 0.8s}
 #main.visible{opacity:1;transform:translateY(0)}
 
+/* NAV — dil switcher nav içinde */
+nav{
+position:fixed;top:0;left:0;right:0;z-index:500;
+padding:1.2rem 3rem;
+display:flex;justify-content:space-between;align-items:center;
+transition:background 0.3s,border-color 0.3s;
+}
+nav.scrolled{background:rgba(8,8,8,0.93);backdrop-filter:blur(12px);border-bottom:1px solid rgba(232,184,75,0.1)}
+.nav-logo{font-family:‘Playfair Display’,serif;font-size:1.2rem;font-style:italic;color:#e8b84b;flex-shrink:0}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:#666;text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:#e8b84b}
+
+/* DİL SWITCHER — nav sağına entegre */
+.lang-sw{
+display:flex;align-items:center;gap:0;
+border:1px solid rgba(232,184,75,0.2);
+overflow:hidden;flex-shrink:0;margin-left:2rem;
+}
+.lang-btn{
+display:flex;align-items:center;gap:0.4rem;
+padding:0.35rem 0.75rem;
+background:transparent;border:none;cursor:pointer;
+font-family:‘JetBrains Mono’,monospace;
+font-size:0.55rem;letter-spacing:0.12em;
+color:#555;text-transform:uppercase;
+transition:all 0.2s;white-space:nowrap;
+}
+.lang-btn .flag{font-size:0.9rem;line-height:1}
+.lang-btn.active{background:rgba(232,184,75,0.1);color:#e8b84b}
+.lang-btn:not(.active):hover{color:#999}
+.lang-div{width:1px;height:16px;background:rgba(232,184,75,0.15)}
+
 /* HERO */
-#hero{min-height:100vh;background:#080808;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:0 8rem;gap:4rem;position:relative;overflow:hidden}
+#hero{min-height:100vh;background:#080808;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:0 6rem;gap:4rem;position:relative;overflow:hidden}
 .blob{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0}
 .b1{width:500px;height:500px;background:rgba(232,184,75,0.06);top:0%;right:5%}
 .b2{width:300px;height:300px;background:rgba(232,184,75,0.04);bottom:5%;left:5%}
@@ -104,7 +117,7 @@ nav.scrolled{background:rgba(8,8,8,0.93);backdrop-filter:blur(12px);border-botto
 .htag{background:#080808;border:1px solid rgba(232,184,75,0.2);padding:0.4rem 1rem;font-size:0.52rem;letter-spacing:0.15em;color:#e8b84b;text-transform:uppercase}
 
 /* SECTIONS */
-section{padding:6rem 8rem}
+section{padding:6rem 6rem}
 .sh{display:flex;align-items:center;gap:1.5rem;margin-bottom:4rem}
 .sn{font-size:0.52rem;letter-spacing:0.25em;color:#e8b84b}
 .sl{width:3rem;height:1px;background:rgba(232,184,75,0.2)}
@@ -154,7 +167,7 @@ section{padding:6rem 8rem}
 .cls{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap}
 .clink{font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:#555;text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px;transition:color 0.2s,border-color 0.2s}
 .clink:hover{color:#e8b84b;border-color:#e8b84b}
-footer{padding:2rem 8rem;border-top:1px solid rgba(232,184,75,0.07);display:flex;justify-content:space-between;align-items:center;font-size:0.56rem;letter-spacing:0.1em;color:#333;background:#080808}
+footer{padding:2rem 6rem;border-top:1px solid rgba(232,184,75,0.07);display:flex;justify-content:space-between;align-items:center;font-size:0.56rem;letter-spacing:0.1em;color:#333;background:#080808}
 .reveal{opacity:0;transform:translateY(25px);transition:opacity 0.7s,transform 0.7s}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
@@ -163,14 +176,13 @@ footer{padding:2rem 8rem;border-top:1px solid rgba(232,184,75,0.07);display:flex
 #cb-btn:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(232,184,75,0.5)}
 .cbdot{position:absolute;top:-2px;right:-2px;width:13px;height:13px;background:#ff4d4d;border-radius:50%;border:2px solid #080808;animation:pdot 2s infinite}
 @keyframes pdot{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
-#cb-pop{position:fixed;bottom:5.5rem;right:2rem;width:350px;background:#111;border:1px solid rgba(232,184,75,0.18);z-index:800;display:none;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,0.7);overflow:hidden}
+#cb-pop{position:fixed;bottom:5.5rem;right:2rem;width:340px;background:#111;border:1px solid rgba(232,184,75,0.18);z-index:800;display:none;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,0.7);overflow:hidden}
 #cb-pop.open{display:flex;animation:sup 0.3s ease}
 @keyframes sup{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
 .cbh{background:#e8b84b;padding:1.2rem 1.5rem;display:flex;justify-content:space-between;align-items:center}
 .cbht{font-family:‘Syne’,sans-serif;font-size:0.9rem;font-weight:700;color:#080808}
 .cbhs{font-size:0.55rem;letter-spacing:0.1em;color:rgba(8,8,8,0.55);text-transform:uppercase}
-.cbx{background:none;border:none;font-size:1.1rem;cursor:pointer;color:#080808;opacity:0.6;transition:opacity 0.2s}
-.cbx:hover{opacity:1}
+.cbx{background:none;border:none;font-size:1.1rem;cursor:pointer;color:#080808;opacity:0.6}
 .cbb{padding:1.5rem}
 .cq{font-size:0.7rem;line-height:1.7;color:rgba(245,240,232,0.65);margin-bottom:1.2rem}
 .cats{display:flex;flex-direction:column;gap:0.7rem}
@@ -179,9 +191,9 @@ footer{padding:2rem 8rem;border-top:1px solid rgba(232,184,75,0.07);display:flex
 .cico{font-size:1.1rem}
 .ctx{display:flex;flex-direction:column;gap:0.1rem}
 .clb{font-size:0.7rem;font-weight:600}
-.cdb{font-size:0.52rem;color:#555;letter-spacing:0.05em}
+.cdb{font-size:0.52rem;color:#555}
 #cs2{display:none}
-.cbk{background:none;border:none;color:#e8b84b;font-size:0.58rem;letter-spacing:0.1em;cursor:pointer;margin-bottom:1.2rem;display:flex;align-items:center;gap:0.4rem;font-family:‘JetBrains Mono’,monospace}
+.cbk{background:none;border:none;color:#e8b84b;font-size:0.58rem;cursor:pointer;margin-bottom:1.2rem;font-family:‘JetBrains Mono’,monospace}
 .csl{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:#e8b84b;margin-bottom:1.2rem;padding:0.5rem 0.9rem;border-left:2px solid #e8b84b;background:rgba(232,184,75,0.05)}
 .cf label{display:block;font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:#555;margin-bottom:0.35rem}
 .cf input,.cf textarea{width:100%;background:#1a1a1a;border:1px solid rgba(232,184,75,0.12);color:#f5f0e8;font-family:‘JetBrains Mono’,monospace;font-size:0.68rem;padding:0.7rem 0.9rem;margin-bottom:0.9rem;outline:none;transition:border-color 0.2s;-webkit-appearance:none;border-radius:0}
@@ -189,8 +201,7 @@ footer{padding:2rem 8rem;border-top:1px solid rgba(232,184,75,0.07);display:flex
 .cf textarea{resize:vertical;min-height:90px}
 .cf .row{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem}
 .ccc{font-size:0.52rem;color:#444;text-align:right;margin-top:-0.6rem;margin-bottom:0.9rem}
-.csb{width:100%;padding:0.85rem;background:#e8b84b;color:#080808;font-family:‘JetBrains Mono’,monospace;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;border:none;cursor:pointer;transition:opacity 0.2s}
-.csb:hover{opacity:0.88}
+.csb{width:100%;padding:0.85rem;background:#e8b84b;color:#080808;font-family:‘JetBrains Mono’,monospace;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;border:none;cursor:pointer}
 .csb:disabled{opacity:0.5;cursor:not-allowed}
 #cs3{display:none;text-align:center;padding:2rem 0}
 .csi{font-size:2.8rem;margin-bottom:1rem}
@@ -206,17 +217,17 @@ footer{padding:2rem 8rem;border-top:1px solid rgba(232,184,75,0.07);display:flex
 #adm-pw{width:100%;background:#1a1a1a;border:1px solid rgba(232,184,75,0.12);color:#f5f0e8;font-family:‘JetBrains Mono’,monospace;font-size:1rem;padding:0.9rem;text-align:center;letter-spacing:0.3em;outline:none;margin-bottom:1rem;-webkit-appearance:none;border-radius:0}
 #adm-pw:focus{border-color:#e8b84b}
 #adm-lb{width:100%;padding:0.9rem;background:#e8b84b;color:#080808;font-family:‘JetBrains Mono’,monospace;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;border:none;cursor:pointer}
-.aerr{color:#ff4d4d;font-size:0.6rem;margin-top:0.8rem;display:none;letter-spacing:0.1em}
+.aerr{color:#ff4d4d;font-size:0.6rem;margin-top:0.8rem;display:none}
 #adm-panel{display:none;width:92%;max-width:880px;max-height:88vh;overflow-y:auto;background:#0d0d0d;border:1px solid rgba(232,184,75,0.12)}
 .aphdr{padding:1.5rem 2rem;border-bottom:1px solid rgba(232,184,75,0.08);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#0d0d0d;z-index:1}
 .aphdr h2{font-family:‘Playfair Display’,serif;font-size:1.3rem;color:#e8b84b}
-.acls{background:none;border:1px solid rgba(232,184,75,0.18);color:#f5f0e8;padding:0.4rem 1rem;font-family:‘JetBrains Mono’,monospace;font-size:0.58rem;letter-spacing:0.1em;cursor:pointer}
+.acls{background:none;border:1px solid rgba(232,184,75,0.18);color:#f5f0e8;padding:0.4rem 1rem;font-family:‘JetBrains Mono’,monospace;font-size:0.58rem;cursor:pointer}
 .astats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(232,184,75,0.08)}
 .sb{background:#111;padding:1.5rem 2rem;text-align:center}
 .sbn{font-family:‘Playfair Display’,serif;font-size:2.5rem;color:#e8b84b}
 .sbl{font-size:0.5rem;letter-spacing:0.2em;color:#444;text-transform:uppercase}
 .aflt{padding:1rem 2rem;display:flex;gap:0.8rem;border-bottom:1px solid rgba(232,184,75,0.06)}
-.fb{padding:0.4rem 1rem;border:1px solid rgba(232,184,75,0.12);background:transparent;color:#666;font-family:‘JetBrains Mono’,monospace;font-size:0.56rem;letter-spacing:0.1em;cursor:pointer;transition:all 0.2s}
+.fb{padding:0.4rem 1rem;border:1px solid rgba(232,184,75,0.12);background:transparent;color:#666;font-family:‘JetBrains Mono’,monospace;font-size:0.56rem;cursor:pointer;transition:all 0.2s}
 .fb.active,.fb:hover{border-color:#e8b84b;color:#e8b84b;background:rgba(232,184,75,0.05)}
 #adm-msgs{padding:0 2rem 2rem}
 .mc{border:1px solid rgba(232,184,75,0.07);padding:1.5rem;margin-top:1rem;background:#111}
@@ -230,15 +241,16 @@ footer{padding:2rem 8rem;border-top:1px solid rgba(232,184,75,0.07);display:flex
 .mname{font-family:‘Syne’,sans-serif;font-size:0.9rem;font-weight:700;margin-bottom:0.25rem}
 .mcontact{font-size:0.6rem;color:#444;margin-bottom:0.8rem}
 .mmsg{font-size:0.68rem;line-height:1.7;color:rgba(245,240,232,0.55);border-top:1px solid rgba(232,184,75,0.07);padding-top:0.8rem}
-.aempty{text-align:center;padding:3rem;color:#333;font-size:0.68rem;letter-spacing:0.1em}
+.aempty{text-align:center;padding:3rem;color:#333;font-size:0.68rem}
 
 @media(max-width:900px){
 #hero{grid-template-columns:1fr;padding:5rem 1.5rem 3rem}
 .hr{display:none}
 section{padding:3.5rem 1.5rem}
-nav{padding:1.2rem 1.5rem}
-.nav-links{display:none}
-.lang-sw{right:1rem;top:1rem}
+nav{padding:1rem 1.5rem}
+.nav-links{gap:1rem}
+.nav-links a{font-size:0.5rem}
+.lang-btn span:last-child{display:none}
 .ag,.skg{grid-template-columns:1fr}
 .ei{grid-template-columns:1fr;gap:0.3rem}
 .pg{grid-template-columns:1fr}
@@ -249,18 +261,6 @@ footer{flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center}
 
 </head>
 <body>
-
-<!-- LANGUAGE SWITCHER -->
-
-<div class="lang-sw">
-  <button class="lang-btn active" id="btn-tr" onclick="setLang('tr')">
-    <span class="flag">🇹🇷</span> TR
-  </button>
-  <div class="lang-divider"></div>
-  <button class="lang-btn" id="btn-en" onclick="setLang('en')">
-    <span class="flag">🇬🇧</span> EN
-  </button>
-</div>
 
 <!-- INTRO -->
 
@@ -288,6 +288,16 @@ footer{flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center}
       <li><a href="#skills" data-tr="Beceriler" data-en="Skills">Beceriler</a></li>
       <li><a href="#contact" data-tr="İletişim" data-en="Contact">İletişim</a></li>
     </ul>
+    <!-- DİL SWITCHER NAV İÇİNDE -->
+    <div class="lang-sw">
+      <button class="lang-btn active" id="btn-tr" onclick="setLang('tr')">
+        <span class="flag">🇹🇷</span><span>TR</span>
+      </button>
+      <div class="lang-div"></div>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">
+        <span class="flag">🇬🇧</span><span>EN</span>
+      </button>
+    </div>
   </nav>
 
   <section id="hero">
@@ -297,7 +307,7 @@ footer{flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center}
       <div class="eyebrow" data-tr="İş fırsatlarına açığım" data-en="Available for opportunities">İş fırsatlarına açığım</div>
       <h1 class="hero-title">Celal<br><em>Efe</em></h1>
       <p class="hero-sub" data-tr="Yazılım Müh. · Web Geliştirici · Kameraman · DJ" data-en="Software Eng. · Web Developer · Cameraman · DJ">Yazılım Müh. · Web Geliştirici · Kameraman · DJ</p>
-      <p class="hero-text" data-tr="Kullanıcı dostu uygulamalar geliştiriyor, sistemlerin arka planını merak ediyorum. Arayüz tasarlarken de, kamera tutarken de, sahnede müzik çalarken de aynı enerjiyi ve uyum yeteneğini getiriyorum." data-en="I build user-friendly apps and dig into how systems work behind the scenes. Whether designing a front-end, testing for vulnerabilities, or holding a camera — I adapt quickly and bring good energy.">Kullanıcı dostu uygulamalar geliştiriyor, sistemlerin arka planını merak ediyorum. Arayüz tasarlarken de, kamera tutarken de, sahnede müzik çalarken de aynı enerjiyi ve uyum yeteneğini getiriyorum.</p>
+      <p class="hero-text" data-tr="Kullanıcı dostu uygulamalar geliştiriyor, sistemlerin arka planını merak ediyorum. Arayüz tasarlarken de, kamera tutarken de, sahnede müzik çalarken de aynı enerjiyi ve uyum yeteneğini getiriyorum." data-en="I build user-friendly apps and dig into how systems work behind the scenes. Whether designing a front-end, testing for vulnerabilities, or holding a camera — I adapt quickly and bring good energy.">Kullanıcı dostu uygulamalar geliştiriyor, sistemlerin arka planını merak ediyorum. Arayüz tasarlarken de, kamera tutarken de, sahnede müzik çalarken de aynı enerjiyi getiriyorum.</p>
       <div class="ctas">
         <a href="#projects" class="btn-p" data-tr="Projeleri Gör" data-en="View Projects">Projeleri Gör</a>
         <a href="#contact" class="btn-g" data-tr="İletişime Geç" data-en="Get In Touch">İletişime Geç</a>
@@ -320,17 +330,12 @@ footer{flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center}
     </div>
   </section>
 
-  <!-- HAKKIMDA / ABOUT -->
-
   <section id="about">
-    <div class="sh reveal">
-      <span class="sn">01</span><div class="sl"></div>
-      <h2 class="st" data-tr="Hakkım<em>da</em>" data-en="About <em>Me</em>">Hakkım<em>da</em></h2>
-    </div>
+    <div class="sh reveal"><span class="sn">01</span><div class="sl"></div><h2 class="st" data-tr="Hakkım<em>da</em>" data-en="About <em>Me</em>">Hakkım<em>da</em></h2></div>
     <div class="ag">
       <div class="at reveal">
-        <p data-tr="Doğu Akdeniz Üniversitesi'nde Yazılım Mühendisliği okuyan, gerçekten çalışan ve güzel görünen şeyler yapmayı seven birisiyim. Ön yüz geliştirme ve veritabanı güvenliği odak noktalarım; ama tek bir alanda kalmak benim için yeterli olmaz." data-en="I'm a Software Engineering student at Eastern Mediterranean University who loves building things that actually work and look great. My focus is front-end development and database security — but staying in just one field was never enough for me.">Doğu Akdeniz Üniversitesi'nde Yazılım Mühendisliği okuyan, gerçekten çalışan ve güzel görünen şeyler yapmayı seven birisiyim. Ön yüz geliştirme ve veritabanı güvenliği odak noktalarım; ama tek bir alanda kalmak benim için yeterli olmaz.</p>
-        <p data-tr="Kod dışında Urban Cypriot bünyesinde kameraman ve video editörü olarak çalışıyor, Gazimağusa'da 12 farklı mekânda Resident DJ olarak sahne alıyorum. Sahne enerjisi ekip çalışmasına da birebir yansıyor." data-en="Outside of code, I work as a cameraman and video editor at Urban Cypriot, and I've performed as a Resident DJ at 12 different venues across Famagusta. The same energy that works on a dancefloor works in a dev team.">Kod dışında Urban Cypriot bünyesinde kameraman ve video editörü olarak çalışıyor, Gazimağusa'da 12 farklı mekânda Resident DJ olarak sahne alıyorum. Sahne enerjisi ekip çalışmasına da birebir yansıyor.</p>
+        <p data-tr="Doğu Akdeniz Üniversitesi'nde Yazılım Mühendisliği okuyan, gerçekten çalışan ve güzel görünen şeyler yapmayı seven birisiyim. Ön yüz geliştirme ve veritabanı güvenliği odak noktalarım." data-en="I'm a Software Engineering student at Eastern Mediterranean University who loves building things that actually work and look great. My focus is front-end development and database security.">Doğu Akdeniz Üniversitesi'nde Yazılım Mühendisliği okuyan, gerçekten çalışan ve güzel görünen şeyler yapmayı seven birisiyim. Ön yüz geliştirme ve veritabanı güvenliği odak noktalarım.</p>
+        <p data-tr="Kod dışında Urban Cypriot bünyesinde kameraman ve video editörü olarak çalışıyor, Gazimağusa'da 12 farklı mekânda Resident DJ olarak sahne alıyorum." data-en="Outside of code, I work as a cameraman and video editor at Urban Cypriot, and I've performed as a Resident DJ at 12 different venues across Famagusta.">Kod dışında Urban Cypriot bünyesinde kameraman ve video editörü olarak çalışıyor, Gazimağusa'da 12 farklı mekânda Resident DJ olarak sahne alıyorum.</p>
         <p data-tr="Neşeli, etik ve son derece meraklı biriyim. Hızlı öğrenir, gittiğim her yere katkı sağlarım." data-en="Cheerful, ethical, and highly curious. I learn fast and contribute wherever I land.">Neşeli, etik ve son derece meraklı biriyim. Hızlı öğrenir, gittiğim her yere katkı sağlarım.</p>
       </div>
       <div class="reveal">
@@ -344,13 +349,8 @@ footer{flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center}
     </div>
   </section>
 
-  <!-- DENEYİM / EXPERIENCE -->
-
   <section id="experience">
-    <div class="sh reveal">
-      <span class="sn">02</span><div class="sl"></div>
-      <h2 class="st" data-tr="Dene<em>yim</em>" data-en="Experi<em>ence</em>">Dene<em>yim</em></h2>
-    </div>
+    <div class="sh reveal"><span class="sn">02</span><div class="sl"></div><h2 class="st" data-tr="Dene<em>yim</em>" data-en="Experi<em>ence</em>">Dene<em>yim</em></h2></div>
     <div>
       <div class="ei reveal">
         <div class="ed" data-tr="Oca 2023 — Günümüz" data-en="Jan 2023 — Present">Oca 2023 — Günümüz</div>
@@ -367,7 +367,7 @@ footer{flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center}
         <div class="ed" data-tr="Oca 2022 — Günümüz" data-en="Jan 2022 — Present">Oca 2022 — Günümüz</div>
         <div class="ec">
           <div class="er" data-tr="Full-Stack Geliştirici &amp; Kameraman" data-en="Full-Stack Developer &amp; Cameraman">Full-Stack Geliştirici &amp; Kameraman</div>
-          <div class="eco">Urban Cypriot · <span data-tr="Gazimağusa" data-en="Famagusta">Gazimağusa</span></div>
+          <div class="eco" data-tr="Urban Cypriot · Gazimağusa" data-en="Urban Cypriot · Famagusta">Urban Cypriot · Gazimağusa</div>
           <ul class="eb">
             <li data-tr="Halı saha rezervasyon sistemini sıfırdan full-stack olarak geliştirdim." data-en="Built a full-stack football pitch reservation system from scratch.">Halı saha rezervasyon sistemini sıfırdan full-stack olarak geliştirdim.</li>
             <li data-tr="Etkinliklerde kamera çekimi ve video düzenleme yaptım." data-en="Handled camera work and video editing for company events.">Etkinliklerde kamera çekimi ve video düzenleme yaptım.</li>
@@ -378,7 +378,7 @@ footer{flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center}
         <div class="ed" data-tr="Oca 2021 — Günümüz" data-en="Jan 2021 — Present">Oca 2021 — Günümüz</div>
         <div class="ec">
           <div class="er">Resident DJ</div>
-          <div class="eco"><span data-tr="Çeşitli Mekânlar · Gazimağusa (12 Lokasyon)" data-en="Various Venues · Famagusta (12 Locations)">Çeşitli Mekânlar · Gazimağusa (12 Lokasyon)</span></div>
+          <div class="eco" data-tr="Çeşitli Mekânlar · Gazimağusa (12 Lokasyon)" data-en="Various Venues · Famagusta (12 Locations)">Çeşitli Mekânlar · Gazimağusa (12 Lokasyon)</div>
           <ul class="eb">
             <li data-tr="12 farklı mekânda sahne aldım; kalabalık enerjisini yönettim, teknik ses sorunlarını anlık çözdüm." data-en="Performed at 12 venues, managing crowd energy and solving technical audio issues on the spot.">12 farklı mekânda sahne aldım; kalabalık enerjisini yönettim, teknik ses sorunlarını anlık çözdüm.</li>
             <li data-tr="Yüksek baskı altında sakin kalma ve pozitif enerji koruma becerisi geliştirdim." data-en="Developed composure and resilience in high-pressure environments.">Yüksek baskı altında sakin kalma ve pozitif enerji koruma becerisi geliştirdim.</li>
@@ -388,13 +388,8 @@ footer{flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center}
     </div>
   </section>
 
-  <!-- PROJELER / PROJECTS -->
-
   <section id="projects">
-    <div class="sh reveal">
-      <span class="sn">03</span><div class="sl"></div>
-      <h2 class="st" data-tr="Proj<em>eler</em>" data-en="Pro<em>jects</em>">Proj<em>eler</em></h2>
-    </div>
+    <div class="sh reveal"><span class="sn">03</span><div class="sl"></div><h2 class="st" data-tr="Proj<em>eler</em>" data-en="Pro<em>jects</em>">Proj<em>eler</em></h2></div>
     <div class="pg">
       <div class="pc reveal">
         <div class="py">2023</div>
@@ -412,18 +407,13 @@ footer{flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center}
         <div class="py" data-tr="2026 · Devam Ediyor" data-en="2026 · In Progress">2026 · Devam Ediyor</div>
         <div class="pn" data-tr="İsimsiz 2D RPG Oyunu" data-en="Untitled 2D RPG Game">İsimsiz 2D RPG Oyunu</div>
         <div class="ps">Unity · C#</div>
-        <div class="pd" data-tr="Mekaniklerden envanter sistemine kadar her şeyini sıfırdan kurguladığım 2D RPG — hâlâ geliştirme aşamasında." data-en="2D RPG from mechanics to full inventory systems — all game logic built from scratch, still in development.">Mekaniklerden envanter sistemine kadar her şeyini sıfırdan kurguladığım 2D RPG — hâlâ geliştirme aşamasında.</div>
+        <div class="pd" data-tr="Mekaniklerden envanter sistemine kadar her şeyini sıfırdan kurguladığım 2D RPG — hâlâ geliştirme aşamasında." data-en="2D RPG from mechanics to full inventory systems — all game logic built from scratch, still in development.">Mekaniklerden envanter sistemine kadar her şeyini sıfırdan kurguladığım 2D RPG.</div>
       </div>
     </div>
   </section>
 
-  <!-- BECERİLER / SKILLS -->
-
   <section id="skills">
-    <div class="sh reveal">
-      <span class="sn">04</span><div class="sl"></div>
-      <h2 class="st" data-tr="Teknik <em>Beceriler</em>" data-en="Tech <em>Skills</em>">Teknik <em>Beceriler</em></h2>
-    </div>
+    <div class="sh reveal"><span class="sn">04</span><div class="sl"></div><h2 class="st" data-tr="Teknik <em>Beceriler</em>" data-en="Tech <em>Skills</em>">Teknik <em>Beceriler</em></h2></div>
     <div class="skg">
       <div class="reveal"><div class="skt" data-tr="Diller &amp; Web" data-en="Languages &amp; Web">Diller &amp; Web</div><div class="skw"><span class="sk">HTML5</span><span class="sk">CSS3</span><span class="sk">JavaScript</span><span class="sk">TypeScript</span><span class="sk">Python</span><span class="sk">C#</span></div></div>
       <div class="reveal"><div class="skt" data-tr="Çerçeveler" data-en="Frameworks">Çerçeveler</div><div class="skw"><span class="sk">React.js</span><span class="sk">React Native</span><span class="sk">Node.js</span></div></div>
@@ -432,12 +422,10 @@ footer{flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center}
     </div>
   </section>
 
-  <!-- İLETİŞİM / CONTACT -->
-
   <section id="contact">
     <div class="ci">
       <h2 class="ctit reveal" data-tr="Birlikte bir şeyler <em>üretelim.</em>" data-en="Let's build something <em>great.</em>">Birlikte bir şeyler <em>üretelim.</em></h2>
-      <p class="cx reveal" data-tr="Bir web projesi, iş birliği ya da sadece sohbet — yeni fikirlere ve fırsatlara her zaman açığım." data-en="Whether it's a web project, a collaboration, or just a conversation — I'm always open to new ideas and opportunities.">Bir web projesi, iş birliği ya da sadece sohbet — yeni fikirlere ve fırsatlara her zaman açığım.</p>
+      <p class="cx reveal" data-tr="Bir web projesi, iş birliği ya da sadece sohbet — yeni fikirlere ve fırsatlara her zaman açığım." data-en="Whether it's a web project, a collaboration, or just a conversation — I'm always open to new ideas.">Bir web projesi, iş birliği ya da sadece sohbet — yeni fikirlere ve fırsatlara her zaman açığım.</p>
       <div class="cls reveal">
         <a href="mailto:celal.efe@cmail.com" class="clink">✉ celal.efe@cmail.com</a>
         <a href="https://linkedin.com/in/celal-efe" target="_blank" class="clink">in LinkedIn</a>
@@ -458,10 +446,7 @@ footer{flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center}
 
 <div id="cb-pop">
   <div class="cbh">
-    <div>
-      <div class="cbht">Celal Efe</div>
-      <div class="cbhs" data-tr="● Çevrimiçi · Genellikle hızlı yanıtlar" data-en="● Online · Usually fast replies">● Çevrimiçi · Genellikle hızlı yanıtlar</div>
-    </div>
+    <div><div class="cbht">Celal Efe</div><div class="cbhs" data-tr="● Çevrimiçi · Hızlı yanıtlar" data-en="● Online · Fast replies">● Çevrimiçi · Hızlı yanıtlar</div></div>
     <button class="cbx" onclick="toggleChat()">✕</button>
   </div>
   <div class="cbb">
@@ -469,7 +454,7 @@ footer{flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center}
       <p class="cq" data-tr="Merhaba! 👋 Size nasıl yardımcı olabilirim?" data-en="Hello! 👋 How can I help you?">Merhaba! 👋 Size nasıl yardımcı olabilirim?</p>
       <div class="cats">
         <button class="cat" onclick="selCat('Sikayet')"><span class="cico">⚠️</span><span class="ctx"><span class="clb" data-tr="Şikayet" data-en="Complaint">Şikayet</span><span class="cdb" data-tr="Bir sorun bildirmek istiyorum" data-en="I want to report an issue">Bir sorun bildirmek istiyorum</span></span></button>
-        <button class="cat" onclick="selCat('Oneri')"><span class="cico">💡</span><span class="ctx"><span class="clb" data-tr="Öneri" data-en="Suggestion">Öneri</span><span class="cdb" data-tr="Fikir veya geri bildirim paylaşmak istiyorum" data-en="I want to share an idea or feedback">Fikir veya geri bildirim paylaşmak istiyorum</span></span></button>
+        <button class="cat" onclick="selCat('Oneri')"><span class="cico">💡</span><span class="ctx"><span class="clb" data-tr="Öneri" data-en="Suggestion">Öneri</span><span class="cdb" data-tr="Fikir veya geri bildirim paylaşmak istiyorum" data-en="I want to share feedback">Fikir veya geri bildirim paylaşmak istiyorum</span></span></button>
         <button class="cat" onclick="selCat('Business')"><span class="cico">💼</span><span class="ctx"><span class="clb" data-tr="İş Teklifi" data-en="Business">İş Teklifi</span><span class="cdb" data-tr="İş birliği veya proje teklifi" data-en="Collaboration or project proposal">İş birliği veya proje teklifi</span></span></button>
       </div>
     </div>
@@ -478,13 +463,13 @@ footer{flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center}
       <div class="csl" id="csl"></div>
       <div class="cf">
         <div class="row">
-          <div><label data-tr="İsim" data-en="First Name">İsim</label><input type="text" id="cf-n" data-placeholder-tr="Adınız" data-placeholder-en="Your name" placeholder="Adınız"></div>
-          <div><label data-tr="Soyisim" data-en="Last Name">Soyisim</label><input type="text" id="cf-s" data-placeholder-tr="Soyadınız" data-placeholder-en="Your surname" placeholder="Soyadınız"></div>
+          <div><label data-tr="İsim" data-en="First Name">İsim</label><input type="text" id="cf-n" placeholder="Adınız"></div>
+          <div><label data-tr="Soyisim" data-en="Last Name">Soyisim</label><input type="text" id="cf-s" placeholder="Soyadınız"></div>
         </div>
         <label data-tr="Telefon (opsiyonel)" data-en="Phone (optional)">Telefon (opsiyonel)</label>
         <input type="tel" id="cf-p" placeholder="+90 5xx xxx xx xx">
         <label data-tr="Mesajınız" data-en="Your Message">Mesajınız</label>
-        <textarea id="cf-m" data-placeholder-tr="Mesajınızı buraya yazın..." data-placeholder-en="Write your message here..." placeholder="Mesajınızı buraya yazın..." maxlength="500"></textarea>
+        <textarea id="cf-m" placeholder="Mesajınızı buraya yazın..." maxlength="500"></textarea>
         <div class="ccc" id="cf-cc">0 / 500</div>
         <button class="csb" id="cf-btn" onclick="sendMsg()" data-tr="Gönder →" data-en="Send →">Gönder →</button>
       </div>
@@ -492,7 +477,7 @@ footer{flex-direction:column;gap:0.5rem;padding:1.5rem;text-align:center}
     <div id="cs3">
       <div class="csi">✅</div>
       <div class="cstt" data-tr="Mesajınız alındı!" data-en="Message received!">Mesajınız alındı!</div>
-      <p class="cstx" data-tr="En kısa sürede dönüş yapacağım. Teşekkürler!" data-en="I'll get back to you as soon as possible. Thank you!">En kısa sürede dönüş yapacağım. Teşekkürler!</p>
+      <p class="cstx" data-tr="En kısa sürede dönüş yapacağım. Teşekkürler!" data-en="I'll get back to you soon. Thank you!">En kısa sürede dönüş yapacağım. Teşekkürler!</p>
     </div>
   </div>
 </div>
@@ -527,33 +512,22 @@ const ADMIN_PW = 'efe2026!';
 const { createClient } = supabase;
 const db = createClient(SB_URL, SB_KEY);
 
-// ── DİL SİSTEMİ ──
+// DİL
 let currentLang = 'tr';
-
 function setLang(lang) {
   currentLang = lang;
   document.getElementById('btn-tr').classList.toggle('active', lang === 'tr');
   document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-
-  // Tüm data-tr / data-en elementlerini güncelle
   document.querySelectorAll('[data-tr]').forEach(el => {
     const val = el.getAttribute('data-' + lang);
     if (!val) return;
-    // innerHTML mi yoksa textContent mi?
-    if (val.includes('<')) el.innerHTML = val;
+    if (val.includes('<em>') || val.includes('<br>')) el.innerHTML = val;
     else el.textContent = val;
   });
-
-  // Placeholder'ları güncelle
-  document.querySelectorAll('[data-placeholder-tr]').forEach(el => {
-    el.placeholder = el.getAttribute('data-placeholder-' + lang) || el.placeholder;
-  });
-
-  // html lang attr
   document.documentElement.lang = lang;
 }
 
-// ── INTRO ──
+// INTRO
 function enter() {
   document.getElementById('intro').classList.add('exit');
   setTimeout(() => {
@@ -565,35 +539,29 @@ const pb = document.getElementById('photobtn');
 pb.addEventListener('click', enter);
 pb.addEventListener('touchend', e => { e.preventDefault(); enter(); });
 
-// ── NAV ──
+// NAV
 window.addEventListener('scroll', () => {
   document.getElementById('nav').classList.toggle('scrolled', scrollY > 40);
 });
 
-// ── SCROLL REVEAL ──
+// REVEAL
 const obs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('visible'); }), { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-// ── CHATBOT ──
+// CHATBOT
 let selType = '';
 function toggleChat() { document.getElementById('cb-pop').classList.toggle('open'); }
-
 function selCat(t) {
   selType = t;
-  const labels = {
-    tr: { Sikayet: '⚠️ Şikayet', Oneri: '💡 Öneri', Business: '💼 İş Teklifi' },
-    en: { Sikayet: '⚠️ Complaint', Oneri: '💡 Suggestion', Business: '💼 Business' }
-  };
+  const L = { tr: { Sikayet:'⚠️ Şikayet', Oneri:'💡 Öneri', Business:'💼 İş Teklifi' }, en: { Sikayet:'⚠️ Complaint', Oneri:'💡 Suggestion', Business:'💼 Business' } };
   document.getElementById('cs1').style.display = 'none';
   document.getElementById('cs2').style.display = 'block';
-  document.getElementById('csl').textContent = labels[currentLang][t];
+  document.getElementById('csl').textContent = L[currentLang][t];
 }
-
 function goBack() {
   document.getElementById('cs2').style.display = 'none';
   document.getElementById('cs1').style.display = 'block';
 }
-
 const ta = document.getElementById('cf-m');
 const cc = document.getElementById('cf-cc');
 if (ta) ta.addEventListener('input', () => cc.textContent = ta.value.length + ' / 500');
@@ -603,24 +571,20 @@ async function sendMsg() {
   const sname = document.getElementById('cf-s').value.trim();
   const phone = document.getElementById('cf-p').value.trim();
   const msg = document.getElementById('cf-m').value.trim();
-  const warn = currentLang === 'tr' ? 'İsim, soyisim ve mesaj zorunludur.' : 'Name, surname and message are required.';
-  if (!name || !sname || !msg) { alert(warn); return; }
+  if (!name || !sname || !msg) { alert(currentLang === 'tr' ? 'İsim, soyisim ve mesaj zorunludur.' : 'Name, surname and message are required.'); return; }
   const btn = document.getElementById('cf-btn');
-  btn.textContent = currentLang === 'tr' ? 'Gönderiliyor...' : 'Sending...';
-  btn.disabled = true;
+  btn.textContent = currentLang === 'tr' ? 'Gönderiliyor...' : 'Sending...'; btn.disabled = true;
   try {
     const { error } = await db.from('messages').insert([{ type: selType, name, surname: sname, phone, message: msg }]);
     if (error) throw error;
     document.getElementById('cs2').style.display = 'none';
     document.getElementById('cs3').style.display = 'block';
   } catch (e) {
-    console.error(e);
-    btn.textContent = currentLang === 'tr' ? 'Hata! Tekrar deneyin' : 'Error! Try again';
-    btn.disabled = false;
+    btn.textContent = currentLang === 'tr' ? 'Hata! Tekrar deneyin' : 'Error! Try again'; btn.disabled = false;
   }
 }
 
-// ── ADMIN ──
+// ADMIN
 let seq = '';
 document.addEventListener('keypress', e => {
   seq += e.key;
@@ -628,7 +592,6 @@ document.addEventListener('keypress', e => {
   if (seq.length > 10) seq = seq.slice(-10);
 });
 if (location.search.includes('admin')) openAdm();
-
 function openAdm() {
   document.getElementById('adm-ov').classList.add('open');
   document.getElementById('adm-login').style.display = 'block';
@@ -639,7 +602,6 @@ function openAdm() {
 }
 function closeAdm() { document.getElementById('adm-ov').classList.remove('open'); }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAdm(); });
-
 function admLogin() {
   if (document.getElementById('adm-pw').value === ADMIN_PW) {
     document.getElementById('adm-login').style.display = 'none';
@@ -650,17 +612,16 @@ function admLogin() {
     document.getElementById('adm-pw').value = '';
   }
 }
-
 let allMsgs = [];
 async function loadMsgs() {
   const { data, error } = await db.from('messages').select('*').order('created_at', { ascending: false });
-  if (error) { console.error(error); return; }
+  if (error) return;
   allMsgs = data || [];
   renderStats(); renderMsgs(allMsgs);
 }
 function renderStats() {
   const t = allMsgs.length, s = allMsgs.filter(m => m.type === 'Sikayet').length, o = t - s;
-  document.getElementById('adm-stats').innerHTML = `<div class="sb"><div class="sbn">${t}</div><div class="sbl">Toplam</div></div><div class="sb"><div class="sbn">${s}</div><div class="sbl">Şikayet</div></div><div class="sb"><div class="sbn">${o}</div><div class="sbl">Öneri &amp; İş</div></div>`;
+  document.getElementById('adm-stats').innerHTML = `<div class="sb"><div class="sbn">${t}</div><div class="sbl">Toplam</div></div><div class="sb"><div class="sbn">${s}</div><div class="sbl">Şikayet</div></div><div class="sb"><div class="sbn">${o}</div><div class="sbl">Diğer</div></div>`;
 }
 function fMsg(type, btn) {
   document.querySelectorAll('.fb').forEach(b => b.classList.remove('active'));
@@ -670,11 +631,11 @@ function fMsg(type, btn) {
 function renderMsgs(msgs) {
   const c = document.getElementById('adm-msgs');
   if (!msgs.length) { c.innerHTML = '<div class="aempty">Henüz mesaj yok.</div>'; return; }
-  const labels = { Sikayet: '⚠️ Şikayet', Oneri: '💡 Öneri', Business: '💼 İş Teklifi' };
-  const cls = { Sikayet: 's', Oneri: 'o', Business: 'b' };
+  const labels = { Sikayet:'⚠️ Şikayet', Oneri:'💡 Öneri', Business:'💼 İş Teklifi' };
+  const cls = { Sikayet:'s', Oneri:'o', Business:'b' };
   c.innerHTML = msgs.map(m => {
     const dt = new Date(m.created_at).toLocaleString('tr-TR');
-    return `<div class="mc"><div class="mm"><span class="mtype ${cls[m.type]||'b'}">${labels[m.type]||m.type}</span><span class="mdate">${dt}</span></div><div class="mname">${m.name} ${m.surname}</div><div class="mcontact">${m.phone||'Telefon belirtilmedi'}</div><div class="mmsg">${m.message}</div></div>`;
+    return `<div class="mc"><div class="mm"><span class="mtype ${cls[m.type]||'b'}">${labels[m.type]||m.type}</span><span class="mdate">${dt}</span></div><div class="mname">${m.name} ${m.surname}</div><div class="mcontact">${m.phone||'Telefon yok'}</div><div class="mmsg">${m.message}</div></div>`;
   }).join('');
 }
 </script>
