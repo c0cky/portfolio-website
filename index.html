@@ -5,6 +5,8 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Celal Efe — Portfolyo</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23080808'/><text y='72' x='50' text-anchor='middle' font-size='60' font-family='serif' fill='%23e8b84b'>CE</text></svg>">
+
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=JetBrains+Mono:wght@300;400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
@@ -25,7 +27,7 @@ body{background:#080808;color:#f5f0e8;font-family:'JetBrains Mono',monospace;ove
 .glow{position:absolute;inset:-30px;border-radius:50%;background:radial-gradient(circle,rgba(232,184,75,0.15) 0%,transparent 70%);z-index:1;animation:glowp 3s ease-in-out infinite}
 @keyframes glowp{0%,100%{opacity:0.6;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
 .photo-circle{
-width:200px;height:200px;border-radius:50%;
+width:240px;height:240px;border-radius:50%;
 border:2.5px solid #e8b84b;overflow:hidden;
 background:#111;position:relative;z-index:2;
 transition:transform 0.4s,box-shadow 0.4s;
@@ -37,7 +39,7 @@ box-shadow:0 0 40px rgba(232,184,75,0.2);
 .photo-circle img{
 width:100%;height:100%;
 object-fit:cover;
-object-position:center 60%;
+object-position:center 50%;
 }
 @keyframes scIn{from{opacity:0;transform:scale(0.82)}to{opacity:1;transform:scale(1)}}
 .intro-name{font-family:‘Playfair Display’,serif;font-size:2.6rem;font-weight:900;letter-spacing:0.05em;animation:fadeUp 0.8s 0.55s both}
